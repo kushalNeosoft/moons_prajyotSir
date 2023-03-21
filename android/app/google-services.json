@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "909816533449",
+    "project_id": "push63moon",
+    "storage_bucket": "push63moon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909816533449:android:851ab7cee8136593d6d818",
+        "android_client_info": {
+          "package_name": "com.demo_new_moon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909816533449-gues08u8b116n6sqlrorl5277feaaf16.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.demo_new_moon",
+            "certificate_hash": "239ee34d528057d2b5edc671c6be3e13f4558a3a"
+          }
+        },
+        {
+          "client_id": "909816533449-jud3i76ihndfbttmnb0tlnh07fj1mv0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARlWvmrya4XIQtX1gqH5WinFmH3IjILoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909816533449-jud3i76ihndfbttmnb0tlnh07fj1mv0b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

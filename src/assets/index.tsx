@@ -1,0 +1,17 @@
+export const assets={
+    cross:require('../assets/cross.png'),
+    delete:require('../assets/delete.png'),
+    filter:require('../assets/filter.png'),
+    heart:require('../assets/heart.png'),
+    market:require('../assets/market.png'),
+    options:require('../assets/options.png'),
+    orders:require('../assets/orders.png'),
+    password:require('../assets/password.png'),
+    portfolio:require('../assets/portfolio.jpeg'),
+    radio_checked:require('../assets/radio_checked.png'),
+    radio_unchecked:require('../assets/radio_unchecked.png'),
+    rupees:require('../assets/rupees.png'),
+    search:require('../assets/search.png'),
+    settings:require('../assets/settings.png'),
+    watchlist:require('../assets/watchlist.png'),
+}
