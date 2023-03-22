@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState, useCallback, useRef} from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Image, LogBox} from 'react-native';
 import {View, Text, FlatList, TouchableOpacity, Dimensions} from 'react-native';
 import DotModal from '../../Component/DotModal/DotModal';
 import Header from '../../Component/Header/Header';
@@ -9,36 +8,28 @@ import TrendModal from '../../Component/TrendModal/TrendModal';
 import {colors} from '../../constants/colors';
 import {texts} from '../../constants/text';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-
-// import StockDetailsList from '../../components/StockDetailsList/StockDetailsList';
 import {assets} from '../../assets';
 import alignment from '../../utils/alignment';
 import {styles} from './StockDetailsStyle';
 import DeleteModal from '../../Component/DeleteModal/DeleteModal';
-// import StockPickModal from '../../components/StockDetailsList/StockPickModal';
 import BottomSheet, { BottomSheetRefProps } from '../../Component/BottomSheet/BottomSheet';
 import {CommonActions} from '@react-navigation/native';
-
-
+import BuySell from '../BuySell/BuySell';
 
 const screenHeight = Dimensions.get('window').height;
 interface StockListProps {
   navigation: any;
 }
 
+LogBox.ignoreAllLogs();
 function StockDetails({navigation}: StockListProps) {
   const [stockData, setStockData] = useState<any>([]);
   const [norModalVisible, setNorModalVisible] = useState(false);
   const [trendModalVisible, setTrendModalVisible] = useState(false);
   const [dotModalVisible, setDotModalVisible] = useState(false);
-  const [showFlat, setShowFlat] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [colorChange, setColorChange] = useState(false);
   const ref = useRef<BottomSheetRefProps>(null);
-
-  
-  
-  
 
   useEffect(() => {
     pushStockData();
@@ -98,10 +89,7 @@ function StockDetails({navigation}: StockListProps) {
           <Text style={styles.index}>{item.index}</Text>
         </View>
         <View
-          style={[
-            styles.stockContainer,
-            // {backgroundColor: colorChange ? '#DAF7A6' : '#FFB6C1'},
-          ]}>
+          style={colorChange?styles.stockContainerPositive:styles.stockContainerNegative}>
           <Text style={styles.stockPriceText}>{item.value}</Text>
           <Text
             style={{
@@ -128,9 +116,6 @@ function StockDetails({navigation}: StockListProps) {
       });
     }
     setStockData(StockArraydata);
-    setTimeout(() => {
-      console.log('Length',stockData.length)
-    }, 5000);
   };
 
   const onNorClose = () => {
@@ -160,14 +145,13 @@ function StockDetails({navigation}: StockListProps) {
       <View style={{height: screenHeight - 200}}>
         <FlatList data={stockData} renderItem={renderListView} />
       </View>
-      {/* {showFlat ? <StockPickModal /> : null} */}
       <NorModal
         visible={norModalVisible}
         onClose={onNorClose}
         showDeleteModal={showDeleteModal}
       />
       <TrendModal visible={trendModalVisible} onClose={onTrendClose} />
-      <DotModal visible={dotModalVisible} onClose={onDotModalClose} />
+      <DotModal visible={dotModalVisible} onClose={onDotModalClose} stockDataList={stockData}/>
       <BottomSheet ref={ref} />
       <DeleteModal visible={deleteModal} onClose={onDeleteClose} />
     </GestureHandlerRootView>

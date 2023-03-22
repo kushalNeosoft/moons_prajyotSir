@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import CustomInput from '../../Component/CustomInput/CustomInput';
 import {texts} from '../../constants/text';
 import alignment from '../../utils/alignment';
@@ -14,39 +7,34 @@ import styles from './Loginstyle';
 import {colors} from '../../constants/colors';
 import TimingModal from '../../Component/TimingModal/TimingModal';
 import {regex} from '../../constants/regex';
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../Redux/Action';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '../../Redux/Action';
+import Toast from 'react-native-toast-message';
 
 function Login() {
   const [modalVisible, setModalVisible] = useState(false);
   const [userName, setUserName] = useState('Himanshu');
   const [password, setPassword] = useState('Sunny@1213');
-  const [valid, setValid] = useState(true);
   const [securePassword, setSecurePassword] = useState(true);
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const dataredux = useSelector(state => state);
-  console.log(dataredux,"--------->");
-  
+  console.log(dataredux, '--------->');
 
-
-  const navigation=useNavigation();
-
-  useEffect(() => {
-    console.log('UserName', userName);
-    console.log('Password', password);
-  }, [userName, password]);
+  const showToast = () => {
+    Toast.show({
+      type: 'success',
+      text1: 'Hello',
+      text2: 'This is some something 👋',
+      position: 'bottom',
+    });
+  };
 
   const validateAndProceed = async (userName: any, password: any) => {
     if (userName !== '' && regex.password.test(password)) {
-        //   await AsyncStorage.setItem(
-        //     'Keyvalue',
-        //     'true',
-        //   );
-        dispatch(login({username:userName}))
-      };
+      dispatch(login({username: userName}));
+      showToast();
     }
+  };
 
   const newUserSignUpView = () => {
     return (
@@ -79,7 +67,7 @@ function Login() {
       <View style={styles.inputView}>
         <CustomInput placeholder="Username" onChangeText={setUserName} />
         <CustomInput
-        //   rightIcon={require('../../assets/password.png')}
+            // rightIcon={require('../../assets/password.png')}
           placeholder="Password"
           secureTextEntry={securePassword}
           onChangeText={setPassword}

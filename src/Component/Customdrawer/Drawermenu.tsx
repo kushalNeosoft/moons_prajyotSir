@@ -23,6 +23,25 @@ export const DrawerMenu = () => {
     const onPressToNavigate = (navigatePath: string) => {
         navigation.navigate(navigatePath)
     }
+    React.useEffect(() => {
+        getMoviesFromApi()
+      }, []);
+    
+
+    const getMoviesFromApi = () => {
+        return fetch('https://d2e9hg2sdzxiwf.cloudfront.net/1404/v1/dynamicmenu.json')
+          .then(response => response.json())
+          .then(json => {
+            console.log(JSON,"ssssss------>");
+            
+            return json;
+            
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      };
+
     const Item = ({ data }: { data: IUser }) => (
         <View style={Drawerstyling.Maincon}>
             {data.drawerType == 'Slide' ?

@@ -4,21 +4,26 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { stackOptions } from "./SideDrawerNavigation";
 import { Settings } from "../Screens/Settings/Settings";
 import StockDetails from "../Screens/StockDetails/StockDetails";
+import BottomTab from "./BottomTab";
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
 import BuySell from "../Screens/BuySell/BuySell";
+import MyTabs from "./topTabNavigation";
 
 export type AppStackParamList = {
   Dashboard: undefined;
-  BuySell:undefined;
-   Settings: undefined;
+  BuySell: undefined;
+  // Settings: undefined;
+  StockDetails: undefined;
+  MyTabs: undefined
 };
 export type dashboardScreenProp = StackNavigationProp<
   AppStackParamList,
   'Dashboard',
   'BuySell'
+
 >;
 
 const DashboardNavigator = createStackNavigator<AppStackParamList>();
@@ -27,13 +32,15 @@ export const DashboardNavigation = () => {
   return (
 
     <DashboardNavigator.Navigator screenOptions={stackOptions} initialRouteName="StockDetails">
-      <DashboardNavigator.Screen name="StockDetails" component={StockDetails} options={dashboardScreenOptions} />
-      <DashboardNavigator.Screen name="BuySell" component={BuySell}  />
+      <DashboardNavigator.Screen name="StockDetails" component={BottomTab} />
+      <DashboardNavigator.Screen name="BuySell" component={BuySell} />
+      <DashboardNavigator.Screen name="Constituents" component={MyTabs} />
+      <DashboardNavigator.Screen name="Settings" component={Settings} />
     </DashboardNavigator.Navigator>
     // <DashboardNavigator.Navigator
     //    screenOptions={stackOptions}
     //   initialRouteName="Dashboard"
-     
+
 
     // >
     //   <DashboardNavigator.Screen

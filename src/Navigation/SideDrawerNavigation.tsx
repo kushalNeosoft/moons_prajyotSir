@@ -37,6 +37,7 @@ export const stackOptions = {
     fontFamily: 'OpenSans-Regular',
   },
   headerTintColor: Platform.OS === 'android' ? 'white' : 'skyblue',
+  headerShown:false
 };
 
 const sideDrawerNavigator = createDrawerNavigator();
@@ -62,7 +63,7 @@ export const SideDrawerNavigation = () => {
         //   borderBottomColor:"white",
         //   borderBottomWidth:1
         // },
-       
+       headerShown:false,
 
         drawerStyle: {
           backgroundColor: 'white',

@@ -27,19 +27,39 @@ export const styles = StyleSheet.create({
       width: 120,
       alignItems: 'flex-start',
     },
-    commonHtL: {
+    commonHtLSelected: {
       borderWidth: 1,
       height: 45,
       width: 110,
       alignItems: 'center',
       justifyContent: 'center',
+      backgroundColor:'yellow',
+      marginHorizontal:20
     },
-    commonHtZ: {
+    commonHtLUnSelected: {
+      borderWidth: 1,
+      height: 45,
+      width: 110,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginHorizontal:20
+    },
+    commonHtZSelected: {
       borderWidth: 1,
       height: 35,
       width: 80,
       alignItems: 'center',
       justifyContent: 'center',
+      backgroundColor:'yellow',
+      marginHorizontal:20
+    },
+    commonHtZUnSelected: {
+      borderWidth: 1,
+      height: 35,
+      width: 80,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginHorizontal:20
     },
     aplhaType: {
       width: 200,

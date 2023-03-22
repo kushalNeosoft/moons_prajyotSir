@@ -13,12 +13,15 @@ import {texts} from '../../constants/text';
 import alignment from '../../utils/alignment';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
 import IndexModal from '../Modal';
+import { useNavigation } from '@react-navigation/native';
 
-function Header() {
+function Header(props:any) {
   const [modalVisible, setModalVisible] = useState(false);
   const [niftyValue, setNiftyValue] = useState(true);
   const [sensexValue, setSenSexValue] = useState(true);
   const [otherValue, setOtherValue] = useState(false);
+
+  const navigation=useNavigation<any>();
 
   useEffect(() => {
     if (niftyValue && sensexValue && otherValue) {
@@ -68,14 +71,14 @@ function Header() {
 
   const renderIndexView = ({item}: any) => {
     return (
-      <View style={{marginHorizontal: 20, alignItems: 'center'}}>
+      <TouchableOpacity style={{ alignItems: 'center'}} onPress={()=>navigation.navigate('Constituents')}>
         <Text style={styles.titleText}>{item.name}</Text>
         <Text style={styles.titleText}>{item.value}</Text>
         <Text
           style={
             styles.changePercentage
           }>{`${item.change}(${item.percentage})`}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
   return (
@@ -89,6 +92,9 @@ function Header() {
         otherValue={otherValue}
       />
       <View style={styles.container}>
+        <TouchableOpacity style={{borderWidth:1,backgroundColor:"yellow"}} onPress={()=>navigation.openDrawer()}>
+          <Text>Open</Text>
+        </TouchableOpacity>
         <FlatList
           horizontal={true}
           data={data}

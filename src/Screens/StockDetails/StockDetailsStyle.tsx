@@ -26,9 +26,15 @@ export const styles = StyleSheet.create({
       color: 'black',
       fontSize: 20,
     },
-    stockContainer: {
+    stockContainerPositive: {
       flexDirection: 'row',
       alignItems: 'center',
+      // backgroundColor:'green'
+    },
+    stockContainerNegative:{
+      flexDirection: 'row',
+      alignItems: 'center',
+      // backgroundColor:'red'
     },
     index: {
       fontSize: 12,
