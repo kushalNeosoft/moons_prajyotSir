@@ -7,7 +7,6 @@ import {
   TouchableNativeFeedback,
   View,
 } from 'react-native';
-import {Popable} from 'react-native-popable';
 
 const Limit = () => {
   const [lot, setLot] = useState(0);
@@ -115,21 +114,10 @@ const Limit = () => {
               alignItems: 'center',
               marginTop: 8,
             }}>
-            <Popable
-              style={{
-                width: 300,
-                padding: 10,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              content="Your order will be executed at then available market price  when the trigger price is reached"
-              position="bottom">
-              <Image
-                source={require('../../../../assets/info.png')}
-                style={{width: 16, height: 16}}
-              />
-            </Popable>
-
+            <Image
+              source={require('../../../../assets/info.png')}
+              style={{width: 16, height: 16}}
+            />
             <Text style={{marginLeft: 8, fontSize: 12}}>Range</Text>
           </View>
         </View>

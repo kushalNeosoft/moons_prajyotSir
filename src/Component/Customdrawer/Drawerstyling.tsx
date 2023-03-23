@@ -7,6 +7,16 @@ export const Drawerstyling = StyleSheet.create({
         flex: 1
 
     },
+    slideimgcon:{
+        height:'50%',
+        width:'75%',
+        borderRadius:20,
+        backgroundColor:"red"
+    },
+    imgconstyl:{
+        borderBottomWidth:1,
+        borderBottomColor: "#E0E0E0"
+    },
     Innerconstart: {
         height: 200,
         flexDirection: "row",
@@ -51,7 +61,9 @@ export const Drawerstyling = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: "center",
         borderBottomWidth: 1,
+        borderTopWidth:1,
         borderBottomColor: "#E0E0E0",
+        borderTopColor:"#E0E0E0",
         padding: 15,
 
 
@@ -82,20 +94,24 @@ export const Drawerstyling = StyleSheet.create({
         marginBottom: 10
     },
     Innercothree: {
-        height: 370,
-        borderBottomWidth: 1,
+        
         borderBottomColor: "#E0E0E0",
         padding: 15,
     },
+    newcontact:{
+        borderBottomColor: "#E0E0E0",
+        height:80,
+        borderBottomWidth:1
+    },
     usagecon: {
         height: 50,
-        width: "100%",
+        width: "90%",
         borderWidth: 1,
         borderRadius: 10,
         borderColor: "#000080",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 35,
+        marginTop:10
     },
     styleb: {
         color: "#000080",
@@ -124,7 +140,7 @@ export const Drawerstyling = StyleSheet.create({
     Buttomtxtcon: {
         height: 50,
         width: "100%",
-        top:-45
+        top:-35
 
     },
     Innercokyc: {

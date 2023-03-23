@@ -3,9 +3,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 export const Needstyle = StyleSheet.create({
 
-    maincontainer:{
-        
-        
+    maincontainer:{ 
         flexDirection:"row",
         flexWrap:'wrap',
     },
@@ -25,7 +23,7 @@ export const Needstyle = StyleSheet.create({
     color:'black'
    },
    newmaincon:{
-    marginBottom:-20
+    
    }
 
 

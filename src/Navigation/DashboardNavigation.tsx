@@ -14,16 +14,15 @@ import MyTabs from "./topTabNavigation";
 
 export type AppStackParamList = {
   Dashboard: undefined;
-  BuySell: undefined;
-  // Settings: undefined;
-  StockDetails: undefined;
-  MyTabs: undefined
+  BuySell:undefined;
+   Settings: undefined;
+   StockDetails:undefined;
+   MyTabs:undefined
 };
 export type dashboardScreenProp = StackNavigationProp<
   AppStackParamList,
   'Dashboard',
   'BuySell'
-
 >;
 
 const DashboardNavigator = createStackNavigator<AppStackParamList>();
@@ -33,14 +32,14 @@ export const DashboardNavigation = () => {
 
     <DashboardNavigator.Navigator screenOptions={stackOptions} initialRouteName="StockDetails">
       <DashboardNavigator.Screen name="StockDetails" component={BottomTab} />
-      <DashboardNavigator.Screen name="BuySell" component={BuySell} />
-      <DashboardNavigator.Screen name="Constituents" component={MyTabs} />
+      <DashboardNavigator.Screen name="BuySell" component={BuySell}  />
       <DashboardNavigator.Screen name="Settings" component={Settings} />
+      <DashboardNavigator.Screen name="Constituents" component={MyTabs}  />
     </DashboardNavigator.Navigator>
     // <DashboardNavigator.Navigator
     //    screenOptions={stackOptions}
     //   initialRouteName="Dashboard"
-
+     
 
     // >
     //   <DashboardNavigator.Screen
