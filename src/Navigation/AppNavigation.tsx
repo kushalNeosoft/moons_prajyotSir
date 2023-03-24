@@ -15,7 +15,6 @@ import { AppState } from 'react-native/Libraries/AppState/AppState';
 export const AppNavigation = () => {
   const [login , setLogin] = useState("false");
   const isLoggedIn = useSelector(state => state.isLoggedIn);
-  console.log(isLoggedIn,"DSDADADADADAS---------->");
   const dispatch=useDispatch();
   
 

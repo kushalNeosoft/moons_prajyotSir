@@ -7,6 +7,7 @@ import {
   LOGIN_STATE,
   LOGIN_FAIL,
   LOGIN_SUCESS,
+  REORDER_LIST
 } from './actionTypes';
 import {AppState} from 'react-native';
 
@@ -21,6 +22,7 @@ const initialState = {
   currentUser: undefined,
   error: '',
   username:'',
+  reorderList:[]
 };
 
 export const Reducer = (state = initialState, action: { type: any; payload: {
@@ -89,6 +91,12 @@ export const Reducer = (state = initialState, action: { type: any; payload: {
         priviousAppState: state.currentAppState,
         currentAppState: action.data,
       };
+      case REORDER_LIST:
+        console.log('Data in switch',action.data)
+        return{
+          ...state,
+          reorderList:action.data
+        }
     default:
       return state;
   }

@@ -17,8 +17,6 @@ function Login() {
   const [password, setPassword] = useState('Sunny@1213');
   const [securePassword, setSecurePassword] = useState(true);
   const dispatch = useDispatch();
-  const dataredux = useSelector(state => state);
-  console.log(dataredux, '--------->');
 
   const showToast = () => {
     Toast.show({

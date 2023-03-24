@@ -86,12 +86,12 @@ export const SideDrawerNavigation = () => {
               <Ionicons name="close" size={25} color='black' />  
               </TouchableOpacity>
             </View>
-            
+            <View style={styles.signOutRootContainer}>
             
             <DrawerMenu/>
 
              
-            
+            </View>
           </SafeAreaView>
         );
       }}>

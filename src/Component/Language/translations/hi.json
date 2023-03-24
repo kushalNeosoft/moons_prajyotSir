@@ -2,7 +2,7 @@
   "translation": {
     "Profile": "प्रोफ़ाइल",
     "Funds": "फंड",
-    "Messages": "संदेश",
+    "Message": "संदेश",
     "Recommendations & Alerts": "सिफारिशें और अलर्ट",
     "Calculators": "कैलकुलेटर",
     "Need Help": "मदद की ज़रूरत है",
@@ -22,7 +22,7 @@
     "How To Change Mpin": "एमपिन कैसे बदलें",
     "Add Funds":"धन जोड़ें",
     "Enter Amount":"राशि डालें",
-    "Usage Guide":"उपयोग गाइड",
+    "Usage Guid":"उपयोग गाइड",
     "Contact Us":"संपर्क करें",
     "Light Theme":"लाइट थीम",
     "Dark Theme":"डार्क थीम"

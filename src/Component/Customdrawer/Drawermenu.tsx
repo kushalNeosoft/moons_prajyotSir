@@ -1,7 +1,8 @@
-import { Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
-// import { ListRenderItem } from 'react-native';
+import { Text, View, FlatList, Image, TouchableOpacity, GestureResponderEvent } from 'react-native';
+import { Drawer, IUser } from './Drawer';
+import { ListRenderItem } from 'react-native';
 import { Drawerstyling } from './Drawerstyling';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Banner from '../Sidercomonent/Banner/Banner';
 import { BannerData } from '../Sidercomonent/Banner/BannerData/Bannerdata';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -11,238 +12,200 @@ import { RadioButton } from 'react-native-paper';
 import { Needtxt } from '../Needhelp/Needtxt';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import dynamicDrawerData from './dynamicmenu.json';
-import { Dimensions } from 'react-native';
-import Carousel from 'react-native-reanimated-carousel';
+
 
 export const DrawerMenu = () => {
+
     const { t } = useTranslation();
-    const navigation = useNavigation()
+
     const [checked, setChecked] = React.useState('Light');
-    const navtoScreen = () => {
-        navigation.navigate('Settings')
+    const navigation = useNavigation();
+    const onPressToNavigate = (navigatePath: string) => {
+        navigation.navigate(navigatePath)
     }
-    const width = Dimensions.get('window').width;
+    React.useEffect(() => {
+        getMoviesFromApi()
+      }, []);
+    
 
-    const ListHeader = () => {
-        return (
-            <>
-            <View>
-                    <Carousel
-                        loop
-                        width={width}
-                        height={width / 2.5}
-                        autoPlay={true}
-                        data={[...new Array(2).keys()]}
-                        scrollAnimationDuration={1000}
-                        onSnapToItem={(index) => console.log('current index:', index)}
-                        renderItem={({ index }) => (
-                            <View
-                                style={{
-                                    flex:1,
-                                    justifyContent: 'center',
-                                    alignItems: "center",
-                                }}
-                            >
-                                <View style={Drawerstyling.slideimgcon}>
+    const getMoviesFromApi = () => {
+        return fetch('https://d2e9hg2sdzxiwf.cloudfront.net/1404/v1/dynamicmenu.json')
+          .then(response => response.json())
+          .then(json => {
+            console.log(JSON,"ssssss------>");
+            
+            return json;
+            
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      };
 
-                                </View>
+    const Item = ({ data }: { data: IUser }) => (
+        <View style={Drawerstyling.Maincon}>
+            {data.drawerType == 'Slide' ?
+                <>
 
+                    <Banner data={BannerData} />
 
-                            </View>
-                        )}
-                    />
-                
-
-
-            </View><View style={Drawerstyling.Innerconone}>
-                    <View style={Drawerstyling.Imgcon}>
-                        <Image
-                            style={Drawerstyling.imagemain}
-                            source={{
-                                uri: 'https://reactnative.dev/img/tiny_logo.png',
-                            }} />
-
-                    </View>
-                    <View style={Drawerstyling.stylingtxt}>
-                        <Text style={Drawerstyling.protextalign}>Om Prakash</Text>
-                        <Text style={Drawerstyling.protextaligntwo}>User ID: OM</Text>
-                    </View>
-                    <Entypo name="chevron-small-right" size={30} color='#000080' />
-
-                </View></>
-
-        );
-    };
-    const renderItem = ({ item }: { item: any }) => {
-        console.log(item.displayName, "KSKSKSKSKSKSKKSKS----------->");
-
-        return (
-            <View style={Drawerstyling.Maincon}>
-                {item?.displayName == 'Funds' ?
+                </>
+                :
+                data.drawerType == 'info' ?
                     <>
-                        <View style={Drawerstyling.Innercotwo}>
-                            <View style={Drawerstyling.Innertwoone}>
-                                <Text style={Drawerstyling.texticon}>{t(item?.name)}</Text>
-                                <Entypo name="chevron-small-right" size={30} color='#000080' />
+                        <View style={Drawerstyling.Innerconone}>
+                            <View style={Drawerstyling.Imgcon}>
+                                <Image
+                                    style={Drawerstyling.imagemain}
+                                    source={{
+                                        uri: 'https://reactnative.dev/img/tiny_logo.png',
+                                    }} />
+
                             </View>
-                            <Funds />
+                            <View style={Drawerstyling.stylingtxt}>
+                                <Text style={Drawerstyling.protextalign}>Om Prakash</Text>
+                                <Text style={Drawerstyling.protextaligntwo}>User ID: OM</Text>
+                            </View>
+                            <Entypo name="chevron-small-right" size={30} color='#000080' />
+
                         </View>
                     </>
                     :
-                    item?.displayName == 'Need Help' ?
+                    data.drawerType == 'Funds' ?
                         <>
-                            <View style={Drawerstyling.Innercothree}>
+                            <View style={Drawerstyling.Innercotwo}>
                                 <View style={Drawerstyling.Innertwoone}>
-                                    <Text style={Drawerstyling.texticon}>{t(item?.name)}</Text>
+                                    <Text style={Drawerstyling.texticon}>{t(data.name)}</Text>
                                     <Entypo name="chevron-small-right" size={30} color='#000080' />
                                 </View>
-
-                                <Needtxt />
-
+                                <Funds />
                             </View>
                         </>
                         :
-                        item?.displayName == 'Usage Guide' ?
+                        data.drawerType == 'Need Help' ?
                             <>
-                                <View >
-                                    <TouchableOpacity style={{ alignItems: "center", justifyContent: "center" }}>
-                                        <View style={Drawerstyling.usagecon}>
-                                            <Text style={Drawerstyling.styleb}>
-                                                {t(item?.name)}
-                                            </Text>
-
-                                        </View>
-                                    </TouchableOpacity>
-                                </View>
-
-
-                            </>
-                            :
-                            item?.displayName == 'Contact Us' ?
-                                <>
-                                    <View style={Drawerstyling.newcontact}>
-                                        <TouchableOpacity style={{ alignItems: "center", borderEndWidth: 1 }}>
+                                <View style={Drawerstyling.Innercothree}>
+                                    <View style={Drawerstyling.Innertwoone}>
+                                        <Text style={Drawerstyling.texticon}>{t(data.name)}</Text>
+                                        <Entypo name="chevron-small-right" size={30} color='#000080' />
+                                    </View>
+                                    {/* <Needtxt/> */}
+                                    <View>
+                                        <TouchableOpacity>
                                             <View style={Drawerstyling.usagecon}>
                                                 <Text style={Drawerstyling.styleb}>
-                                                    {t(item?.name)}
+                                                    {t('Usage Guid')}
+                                                </Text>
+
+                                            </View>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity>
+                                            <View style={Drawerstyling.usagecon}>
+                                                <Text style={Drawerstyling.styleb}>
+                                                    {t('Contact Us')}
                                                 </Text>
 
                                             </View>
                                         </TouchableOpacity>
                                     </View>
 
+                                </View>
+                            </>
+                            :
+                            data.drawerType == 'Settings' ?
+                                <>
 
+                                    <View style={Drawerstyling.Innercotwo}>
+                                        <TouchableOpacity onPress={(index) => onPressToNavigate(data.navigateTo)}>
+                                            <View style={Drawerstyling.Innertwoone}>
+                                                <Text style={Drawerstyling.texticon}>{t(data.name)}</Text>
+                                                <Entypo name="chevron-small-right" size={30} color='#000080' />
+                                            </View>
+                                        </TouchableOpacity>
+                                        <View style={Drawerstyling.radio}>
+                                            <RadioButton
+                                                value="Light"
+                                                status={checked === 'Light' ? 'checked' : 'unchecked'}
+                                                onPress={() => setChecked('Light')}
+                                            />
+                                            <Text style={Drawerstyling.Lighttxt}>{t('Light Theme')}</Text>
+                                            <RadioButton
+                                                value="Dark"
+                                                status={checked === 'Dark' ? 'checked' : 'unchecked'} //if the value of checked is Dark, then select this button
+                                                onPress={() => setChecked('Dark')} //when pressed, set the value of the checked Hook to 'Apple'
+                                            />
+                                            <Text style={Drawerstyling.Darktxt}>{t('Dark Theme')}</Text>
 
+                                        </View>
 
+                                    </View>
                                 </>
                                 :
-                                item?.displayName == 'Settings' ?
+                                data.drawerType == 'e-Kyc' ?
                                     <>
+                                        <View style={Drawerstyling.Innercokyc}>
+                                            <View style={Drawerstyling.Innertwoone}>
+                                                <Text style={Drawerstyling.texticon}>{t(data.name)}</Text>
+                                                <Entypo name="chevron-small-right" size={30} color='#000080' />
+                                            </View>
+                                            <View style={Drawerstyling.Buttomtxtcon}>
+                                                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                                                    <Text style={Drawerstyling.versiontxt}>
+                                                        Version 1.0.2.0
+                                                    </Text>
+                                                    <Text style={Drawerstyling.versiontxt}>
+                                                        Last Login : 2023-Mar-10 10:45:53
+                                                    </Text>
 
-                                        <View style={Drawerstyling.Innercotwo}>
-                                            <TouchableOpacity onPress={navtoScreen}>
-                                                <View style={Drawerstyling.Innertwoone}>
-                                                    <Text style={Drawerstyling.texticon}>{t(item?.name)}</Text>
-                                                    <Entypo name="chevron-small-right" size={30} color='#000080' />
                                                 </View>
-                                            </TouchableOpacity>
-                                            <View style={Drawerstyling.radio}>
-                                                <RadioButton
-                                                    value="Light"
-                                                    status={checked === 'Light' ? 'checked' : 'unchecked'}
-                                                    onPress={() => setChecked('Light')}
-                                                />
-                                                <Text style={Drawerstyling.Lighttxt}>{t('Light Theme')}</Text>
-                                                <RadioButton
-                                                    value="Dark"
-                                                    status={checked === 'Dark' ? 'checked' : 'unchecked'} //if the value of checked is Dark, then select this button
-                                                    onPress={() => setChecked('Dark')} //when pressed, set the value of the checked Hook to 'Apple'
-                                                />
-                                                <Text style={Drawerstyling.Darktxt}>{t('Dark Theme')}</Text>
-
+                                                <Text style={Drawerstyling.buttontxt}>
+                                                    Powered by 63 moons technologies limited
+                                                </Text>
                                             </View>
 
                                         </View>
                                     </>
                                     :
-                                    item?.displayName == 'e-Kyc System' ?
-                                        <>
-                                            <View style={Drawerstyling.Innercokyc}>
-                                                <View style={Drawerstyling.Innertwoone}>
-                                                    <Text style={Drawerstyling.texticon}>{t(item?.name)}</Text>
-                                                    <Entypo name="chevron-small-right" size={30} color='#000080' />
-                                                </View>
-                                                <View style={Drawerstyling.Buttomtxtcon}>
-                                                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                                                        <Text style={Drawerstyling.versiontxt}>
-                                                            Version 1.0.2.0
-                                                        </Text>
-                                                        <Text style={Drawerstyling.versiontxt}>
-                                                            Last Login : 2023-Mar-10 10:45:53
-                                                        </Text>
+                                    <>
+                                        <TouchableOpacity onPress={(index) => onPressToNavigate(data.navigateTo)}>
+                                            <View style={Drawerstyling.Innercon}>
+                                                <Text style={Drawerstyling.texticon}>{t(data.name)}</Text>
+                                                {data.name == 'Log Out' ?
+                                                    <>
+                                                        <MaterialCommunityIcons name="logout" size={30} color='#000080' />
 
-                                                    </View>
-                                                    <Text style={Drawerstyling.buttontxt}>
-                                                        Powered by 63 moons technologies limited
-                                                    </Text>
-                                                </View>
+                                                    </>
+                                                    :
+                                                    data.name == 'Rate Us' ?
+                                                        <>
+                                                            <MaterialCommunityIcons name="star-outline" size={30} color='#000080' />
+
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <Entypo name="chevron-small-right" size={30} color='#000080' />
+                                                        </>
+                                                }
 
                                             </View>
-                                        </>
-                                        :
-                                        item?.displayName === 'Account Statement'
-                                            ||
-                                            item?.displayName === 'eDIS Permission'
-                                            ||
-                                            item?.displayName === 'Invite Friends'
-                                            ||
-                                            item?.displayName === 'Theme'
-                                            ||
-                                            item?.displayName === 'Close'
-                                            ?
-                                            null
-                                            :
-                                            <>
-                                                <TouchableOpacity >
-                                                    <View style={Drawerstyling.Innercon}>
-                                                        <Text style={Drawerstyling.texticon}>{t(item?.name)}</Text>
-                                                        {item?.name == 'Log Out' ?
-                                                            <>
-                                                                <MaterialCommunityIcons name="logout" size={30} color='#000080' />
-
-                                                            </>
-                                                            :
-                                                            item?.name == 'Rate Us' ?
-                                                                <>
-                                                                    <MaterialCommunityIcons name="star-outline" size={30} color='#000080' />
-
-                                                                </>
-                                                                :
-                                                                <>
-                                                                    <Entypo name="chevron-small-right" size={30} color='#000080' />
-                                                                </>
-                                                        }
-
-                                                    </View>
-                                                </TouchableOpacity>
+                                        </TouchableOpacity>
 
 
-                                            </>
-                }
+                                    </>
+            }
 
-            </View>
+        </View>
+    );
 
-        );
-    }
+    const renderItem: ListRenderItem<IUser> = ({ item }) => <Item data={item} />;
 
     return (
-        <FlatList
-            data={dynamicDrawerData}
-            renderItem={renderItem}
-            ListHeaderComponent={ListHeader}
-            keyExtractor={(item) => String(item.id)}
 
+
+        <FlatList
+            data={Drawer}
+            renderItem={renderItem}
+            keyExtractor={(item: IUser) => item.index}
         />
 
 

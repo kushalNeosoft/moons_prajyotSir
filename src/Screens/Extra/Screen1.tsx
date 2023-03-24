@@ -1,16 +1,125 @@
-import { useIsFocused } from '@react-navigation/native';
-import React, { useEffect } from 'react';
-import {View,Text} from 'react-native';
+import React, {
+    useState,
+    useRef,
+    useCallback,
+    useEffect,
+  } from 'react';
+  import {
+    Text,
+    View,
+    StyleSheet,
+    TouchableOpacity,
+    ActivityIndicator,
+  } from 'react-native';
+  import DraggableFlatList from 'react-native-draggable-flatlist';
+  import {Button} from 'react-native';
+import { useDispatch } from 'react-redux';
+import { reorderList } from '../../Redux/Action';
+import { useNavigation } from '@react-navigation/native';
+  
+  function Screen1(props: any) {
+    const [data, setData] = useState<any>();
+    const [loading,setLoading]=useState(true)
+    const itemRefs = useRef(new Map());
 
-function Screen1(){
+    const dispatch=useDispatch()
+    const navigation=useNavigation<any>()
 
-    const isFocused=useIsFocused()
+    const dispatchAndNavigate=()=>{
+        dispatch(reorderList(data))
+        navigation.navigate('Screen2')
+    }
+  
     useEffect(()=>{
-        console.log('Screen1 mounted')
-    },[isFocused])
-    return(
-        <Text>Screen1</Text>
-    )
-}
-
-export default Screen1;
+      const pushStockData = () => {
+        let StockArraydata = [];
+        for (let i = 0; i < 20; i++) {
+          StockArraydata.push({
+            companyName: Math.floor(Math.random() * 99),
+            index: 'NSE',
+            value: Math.floor(Math.random() * 999),
+            dayValue: '35.15',
+            percentage: '1.65',
+            id: i,
+          });
+        }
+        setData(StockArraydata);
+        setLoading(false)
+      };
+      pushStockData()
+    },[])
+  
+  
+    const renderItem = useCallback((params: any) => {
+  
+      return (
+        <RowItem {...params} itemRefs={itemRefs} />
+      );
+    }, []);
+  
+    return (
+      <View style={{flex: 1}}>
+        {loading ? (
+          <ActivityIndicator size={'large'} color={'red'} />
+        ) : (
+          <View style={styles.container}>
+            <Button title="Press" onPress={() =>dispatchAndNavigate()} />
+            <DraggableFlatList
+              keyExtractor={(item: any) => item.id}
+              data={data}
+              renderItem={renderItem}
+              onDragEnd={({data}) => setData(data)}
+              activationDistance={20}
+            />
+          </View>
+        )}
+      </View>
+    );
+  }
+  
+  export default Screen1;
+  
+  function RowItem({item, drag}: any) {
+  
+    return (
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => console.log('Index', item.id)}
+            onLongPress={drag}
+            style={[
+              styles.row,
+              {backgroundColor: 'black', height: 100, marginVertical: 10},
+            ]}>
+            <Text style={styles.text}>{`${item.id}--${item.companyName}`}</Text>
+          </TouchableOpacity>
+    );
+  }
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    row: {
+      flexDirection: 'row',
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 15,
+    },
+    text: {
+      fontWeight: 'bold',
+      color: 'white',
+      fontSize: 32,
+    },
+    underlayRight: {
+      flex: 1,
+      backgroundColor: 'teal',
+      justifyContent: 'flex-start',
+    },
+    underlayLeft: {
+      flex: 1,
+      backgroundColor: 'tomato',
+      justifyContent: 'flex-end',
+    },
+  });
+  

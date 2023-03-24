@@ -2,7 +2,7 @@
   "translation": {
     "Profile": "Profile",
     "Funds": "Funds",
-    "Messages": "Messages",
+    "Message": "Message",
     "Recommendations & Alerts": "Recommendations & Alerts",
     "Calculators": "Calculators",
     "Need Help": "Need Help",
@@ -22,7 +22,7 @@
     "How To Change Mpin": "How To Change Mpin",
     "Add Funds":"Add Funds",
     "Enter Amount":"Enter Amount",
-    "Usage Guide":"Usage Guide",
+    "Usage Guid":"Usage Guid",
     "Contact Us":"Contact Us",
     "Light Theme":"Light Theme",
     "Dark Theme":"Dark Theme"
