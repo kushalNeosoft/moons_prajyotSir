@@ -53,9 +53,7 @@ export const AppNavigation = () => {
 
   return (
     <NavigationContainer>
-      {/* <AuthNavigation/> */}
-      {isLoggedIn?<SideDrawerNavigation/>: <AuthNavigation/>}
-     
+      <SideDrawerNavigation/>
     </NavigationContainer>
   );
 };

@@ -7,9 +7,8 @@ import {
   LOGIN_STATE,
   LOGIN_FAIL,
   LOGIN_SUCESS,
-  REORDER_LIST
-} from './actionTypes';
-import {AppState} from 'react-native';
+} from '../actionTypes';
+
 
 const initialState = {
   usersData: [],
@@ -25,27 +24,15 @@ const initialState = {
   reorderList:[]
 };
 
-export const Reducer = (state = initialState, action: { type: any; payload: {
+const Reducer = (state = initialState, action: { type: any; payload: {
   username: any; email: any; 
 }; data: any; }) => {
   switch (action.type) {
     case LOGIN_STATE:
-      
-      
         return{
           ...state,
         username:action.data,
         isLoggedIn: true,
-        
-          
-        };
-        case LOGIN_FAIL:
-        return{
-
-        };
-        case LOGIN_SUCESS:
-        return{
-
         };
     case REGISTER_DATA:
       return {
@@ -101,3 +88,7 @@ export const Reducer = (state = initialState, action: { type: any; payload: {
       return state;
   }
 };
+
+export default Reducer;
+
+

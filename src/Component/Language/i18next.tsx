@@ -24,7 +24,7 @@ const languageDetector: LanguageDetectorAsyncModule = {
     AsyncStorage.getItem('APP_LANG', (err, lng) => {
       //Handle error fetching stored data or no data found
       if (err || !lng) {
-        console.log('GET', 'error');
+       console .log('GET', 'error');
         callback('en');
         return;
       }

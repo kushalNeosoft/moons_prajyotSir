@@ -63,6 +63,7 @@ export const SideDrawerNavigation = () => {
         //   borderBottomColor:"white",
         //   borderBottomWidth:1
         // },
+         swipeEnabled: false,
        headerShown:false,
 
         drawerStyle: {
@@ -75,6 +76,7 @@ export const SideDrawerNavigation = () => {
           // borderColor:"white",
           // borderBottomWidth:4
         }
+        
         
       }}
       drawerContent={props => {

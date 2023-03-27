@@ -8,14 +8,16 @@ import {colors} from '../../constants/colors';
 import TimingModal from '../../Component/TimingModal/TimingModal';
 import {regex} from '../../constants/regex';
 import {useDispatch, useSelector} from 'react-redux';
-import {login} from '../../Redux/Action';
+import {login, newLog} from '../../Redux/Action';
 import Toast from 'react-native-toast-message';
+import { useNavigation } from '@react-navigation/native';
 
 function Login() {
   const [modalVisible, setModalVisible] = useState(false);
   const [userName, setUserName] = useState('Himanshu');
   const [password, setPassword] = useState('Sunny@1213');
   const [securePassword, setSecurePassword] = useState(true);
+  const navigation=useNavigation();
   const dispatch = useDispatch();
 
   const showToast = () => {
@@ -29,7 +31,8 @@ function Login() {
 
   const validateAndProceed = async (userName: any, password: any) => {
     if (userName !== '' && regex.password.test(password)) {
-      dispatch(login({username: userName}));
+      dispatch(newLog({firsttime:true}))
+      navigation.navigate('StockDetails');
       showToast();
     }
   };

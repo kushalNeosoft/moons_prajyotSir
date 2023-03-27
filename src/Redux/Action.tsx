@@ -7,7 +7,7 @@ import {
   LOGIN_STATE,
   LOGIN_FAIL,
   LOGIN_SUCESS,
-  REORDER_LIST
+  NEW_USER,
 } from './actionTypes';
 
 
@@ -51,16 +51,11 @@ export const login = data =>({
  
   
 })
-
-export const loginfail = data =>({
-  type:LOGIN_FAIL,
+export const newLog = data =>({  
+  type:NEW_USER,
   data,
 })
 
-export const loginscucess = data =>({
-  type:LOGIN_SUCESS,
-  data,
-})
 
 export const reorderList=(data:any)=>({
   type:REORDER_LIST,

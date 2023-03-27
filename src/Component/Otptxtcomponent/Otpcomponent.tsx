@@ -6,6 +6,7 @@ import { Otpstyle } from "../../Screens/OTP/Otpstyle";
 import Textinputfield from "../TextInput";
 import { Styleotp } from "./Styleotp";
 import DropdownComponent from "../Dropdown/Dropdown";
+import { useNavigation } from "@react-navigation/native";
 
 
 const data = [
@@ -24,12 +25,12 @@ const Otpcomponent = () => {
     const [otp, setOtp] = useState<string[]>(new Array(4).fill(""));
     const [activeOTPindex, setActiveOTPIndex] = useState<number>(0);
     const [value, setValue] = useState(null);
+    const navigation = useNavigation();
 
     const inputref = useRef<any>(null);
 
     const handelonchange = (index: number, val: string) => {
-        console.log("pppp------->", index);
-        console.log("val------->", val);
+     
         const tempOtpArray = otp?.concat();
         tempOtpArray[index] = val.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/gi, '');
         if (!val) {
@@ -39,7 +40,10 @@ const Otpcomponent = () => {
         }
         else setActiveOTPIndex(index + 1)
         setOtp(tempOtpArray);
-
+        if(activeOTPindex===3){
+            navigation.navigate('StockDetails')
+        }
+        
     }
 
     // const handelonchange = (val:any) => {
@@ -56,6 +60,13 @@ const Otpcomponent = () => {
     //     setOtp(tempOtpArray);
 
     // }
+    // console.log(otp.length,"hdhdhdhdhdh----->");
+    // if(otp.length==4)
+    // {
+    //     navigation.navigate('StockDetails')
+    // }
+    
+
     const otpvalidtion =()=>{
         console.log('')
 
@@ -63,7 +74,7 @@ const Otpcomponent = () => {
 
 
     useEffect(() => {
-        console.log('activeOTPindex------->', activeOTPindex);
+       
         if (activeOTPindex < otp.length) {
             inputref.current.focus();
             if(activeOTPindex==4&&6){
@@ -98,7 +109,7 @@ const Otpcomponent = () => {
     // };
 
 
-    console.log('------------>', otp)
+
     return (
         <View style={Styleotp.Maincon}>
             <View >
