@@ -1,4 +1,6 @@
+
 import { Dimensions, StyleSheet } from 'react-native';
+
 
 
 export const Drawerstyling = StyleSheet.create({
@@ -40,7 +42,7 @@ export const Drawerstyling = StyleSheet.create({
 
     },
     texticon: {
-        fontSize: 18,
+        fontSize: MyContext,
         color: "black",
         fontWeight: 'bold',
 

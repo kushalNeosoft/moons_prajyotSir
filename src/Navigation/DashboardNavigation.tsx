@@ -63,23 +63,7 @@ export const DashboardNavigation = () => {
 
 
     </DashboardNavigator.Navigator>
-    // <DashboardNavigator.Navigator
-    //    screenOptions={stackOptions}
-    //   initialRouteName="Dashboard"
-
-
-    // >
-    //   <DashboardNavigator.Screen
-    //     name="Dashboard"
-    //     component={Dashboardscreen}
-    //     options={dashboardScreenOptions}
-
-    //   />
-
-    //   {/* <DashboardNavigator.Screen name="Settings" component={Settings} /> */}
-
-
-    // </DashboardNavigator.Navigator>
+    
   );
 };
 

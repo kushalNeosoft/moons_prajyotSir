@@ -6,5 +6,11 @@ export const SET_APP_STATE = 'SET_APP_STATE';
 export const LOGIN_STATE='LOGIN_STATE';
 export const LOGIN_FAIL='LOGIN_FAIL';
 export const LOGIN_SUCESS='LOGIN_SUCESS';
+export const REORDER_LIST='REORDER_LIST';
 export const NEW_USER='NEW_USER';
+export const ADD_FONT='ADD_FONT';
+export const DEC_FONT='DEC_FONT';
+
+
+
 
