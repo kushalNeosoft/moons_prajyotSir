@@ -11,7 +11,7 @@ export const Needhelp = [
         title: 'How To Add Scrips To Watch List',
         index: '1',
         drawerType: 'Slide',
-        url: 'https://reactnative.dev/'
+        url: 'https://reactnative.dev/',
 
     },
     {

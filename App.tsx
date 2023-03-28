@@ -7,9 +7,12 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import { checkRooted } from "./src/utils/checkRooted";
+import { NetworkInfo } from "react-native-network-info";
+import IMEI from "react-native-imei";
 
 
 var DeviceInfo = require('react-native-device-info');
+const version = DeviceInfo.getVersion();
 
 
 const App = () => {
@@ -29,24 +32,32 @@ const App = () => {
     console.log("Device Brand : " + DeviceInfo.getBrand());
     // console.log("Device Carrier : " + DeviceInfo.getCarrier());
     console.log("Device ID : " + DeviceInfo.getDeviceId());
-    console.log("Device Version : " + DeviceInfo.getVersion());
+    console.log("Application Version : " + DeviceInfo.getVersion());
     //console.log("Device UniqueId : " + DeviceInfo.getUniqueId());
     console.log("Device SystemVersion : " + DeviceInfo.getSystemVersion());
     console.log("Device SerialNumber : "  + DeviceInfo.getSerialNumber());
-  }
-    //android.permission.ACCESS_WIFI_STATE Permission Needed
-     //DeviceInfo.getMACAddress().then((mac: any) => {
-       //console.log(mac);
-     //});
-      // DeviceInfo.getIPAddress().then((ip: any) => {
-      //   console.log(ip)
-;
-      // });
+
+  };
+  
+  NetworkInfo.getIPAddress().then((ipAddress: any) => {
+    console.log("Device IP : " + ipAddress);
+  });
+
+  IMEI.getImei().then((imeiList: any) => {
+    console.log(imeiList)
+});
+  
+  //  NetworkInfo.getIPAddress((ip: any) => {
+  //    console.log("Kushal IP :" +ip);
+  //  });
+
+//   GetAppName.getAppName((appName: any) => {
+//     console.log("Here is your app name:", appName)      
+//  });
 
     
-
-// Get Local IP
-// NetworkInfo.getIPAddress((ip: any) => {
+//Get Local IP
+// NetworkInfo.getIPAddress((ip) => {
 //   console.log("Network IP : " + ip);
 // });
 

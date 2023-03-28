@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback, useRef} from 'react';
+import React, {useEffect, useState, useCallback, useRef,useContext} from 'react';
 import {Image, LogBox} from 'react-native';
 import {View, Text, FlatList, TouchableOpacity, Dimensions} from 'react-native';
 import DotModal from '../../Component/DotModal/DotModal';
@@ -14,7 +14,10 @@ import {styles} from './StockDetailsStyle';
 import DeleteModal from '../../Component/DeleteModal/DeleteModal';
 import BottomSheet, { BottomSheetRefProps } from '../../Component/BottomSheet/BottomSheet';
 import {CommonActions} from '@react-navigation/native';
+import CarouselList from '../../Component/CarouselList/CarouselList';
+import { ListItemProps } from '../../Component/CarouselList/type';
 import BuySell from '../BuySell/BuySell';
+import ThemeContext from '../../context/AppContext';
 
 const screenHeight = Dimensions.get('window').height;
 interface StockListProps {
@@ -23,25 +26,26 @@ interface StockListProps {
 
 LogBox.ignoreAllLogs();
 function StockDetails({navigation}: StockListProps) {
-  const [stockData, setStockData] = useState<any>([]);
+  const [stockData, setStockData] = useState<ListItemProps[]>([]);
   const [norModalVisible, setNorModalVisible] = useState(false);
   const [trendModalVisible, setTrendModalVisible] = useState(false);
   const [dotModalVisible, setDotModalVisible] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [colorChange, setColorChange] = useState(false);
+  const [carouselView, setCarouselView] = useState(false);
+  //const {globalTheme,toggleTheme}=useContext(ThemeContext)
+  //console.log('Themes',globalTheme,toggleTheme)
   const ref = useRef<BottomSheetRefProps>(null);
+  const listRef =useRef(0)
+  const toggleRef=useRef(true)
 
   useEffect(() => {
-    pushStockData();
+    const changeData=setInterval(()=>{
+      pushStockData();
+    },2000)
+
+    return()=>clearInterval(changeData)
   }, []);
-
-  // useEffect(()=>{
-  //   const timer=setInterval(()=>{
-  //     setColorChange(prevState=>!prevState)
-  //   },1000)
-
-  //   return ()=>clearInterval(timer)
-  // },[colorChange])
 
   const onPress = useCallback(() => {
     ref?.current?.scrollTo(-500);
@@ -72,18 +76,22 @@ function StockDetails({navigation}: StockListProps) {
     );
   };
 
+  const onPressItem=(index:any)=>{
+    // navigation.dispatch(
+    //   CommonActions.navigate({
+    //     name: 'BuySell',
+    //     params: {
+    //       data: "MRF",
+    //     },
+    //   }),
+    // );
+    listRef.current=index;
+    setCarouselView(true);
+  }
+
   const renderListView = ({item, index}: any) => {
     return (
-      <TouchableOpacity style={styles.stock} onPress={() => {
-        navigation.dispatch(
-          CommonActions.navigate({
-            name: 'BuySell',
-            params: {
-              data: "MRF",
-            },
-          }),
-        );
-      }}>
+      <TouchableOpacity style={styles.stock} onPress={()=>onPressItem(index)}>
         <View style={{...alignment.row}}>
           <Text style={{fontWeight: 'bold',color:colors.black,fontSize:17}}>{item.companyName}</Text>
           <Text style={styles.index}>{item.index}</Text>
@@ -138,6 +146,9 @@ function StockDetails({navigation}: StockListProps) {
     setDeleteModal(prevState => !prevState);
   };
 
+  const onCloseCarousel=()=>{
+    setCarouselView(false);
+  }
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <Header />
@@ -145,6 +156,7 @@ function StockDetails({navigation}: StockListProps) {
       <View style={{height: screenHeight - 200}}>
         <FlatList data={stockData} renderItem={renderListView} />
       </View>
+      {carouselView? <CarouselList listData={stockData} index={listRef.current} onCloseCarousel={onCloseCarousel}/>:null}
       <NorModal
         visible={norModalVisible}
         onClose={onNorClose}
