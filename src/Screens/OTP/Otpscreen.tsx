@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, Image, TouchableOpacity, ScrollView } from "r
 import { Otpstyle } from "./Otpstyle";
 import { Dropdown } from 'react-native-element-dropdown';
 import Tabnavigation from "../../Navigation/Tabnavigation";
+import { useSelector } from "react-redux";
 
 const data = [
     { label: 'Item 1', value: '1' },
@@ -18,6 +19,8 @@ const data = [
 const Otp = () => {
     const [selectedTab, setSelectedTab] = useState(3);
     const [value, setValue] = useState(null);
+    const urldf='https://reactnative.dev/img/tiny_logo.png';
+    const storeimg = useSelector(state => state.Login.imgstore);
     return (
         <View style={Otpstyle.Maincontainer}>
             <View style={Otpstyle.Innermain}>
@@ -25,9 +28,12 @@ const Otp = () => {
                     <View style={Otpstyle.imgcontiner}>
                         <Image
                             style={Otpstyle.tinyLogo}
-                            source={{
-                                uri: 'https://reactnative.dev/img/tiny_logo.png',
-                            }}
+                            source={
+                                storeimg == ''
+                                  ? { uri: urldf }
+                                  : { uri:storeimg }
+                                  
+                              }
                         />
 
                     </View>

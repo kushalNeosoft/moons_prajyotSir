@@ -10,6 +10,7 @@ export const REORDER_LIST='REORDER_LIST';
 export const NEW_USER='NEW_USER';
 export const ADD_FONT='ADD_FONT';
 export const DEC_FONT='DEC_FONT';
+export const IMAGE_CAPTURE='IMAGE_CAPTURE';
 
 
 

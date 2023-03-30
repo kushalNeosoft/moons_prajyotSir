@@ -13,6 +13,12 @@ export const Drawerstyling = StyleSheet.create({
         borderRadius:20,
         backgroundColor:"red"
     },
+    slideimgcontwo:{
+        height:'100%',
+        width:'100%',
+        borderRadius:20,
+        backgroundColor:"red"
+    },
     imgconstyl:{
         borderBottomWidth:1,
         borderBottomColor: "#E0E0E0"
@@ -50,7 +56,7 @@ export const Drawerstyling = StyleSheet.create({
 
     },
     texticon: {
-        fontSize: 18,
+      
         color: "black",
         fontWeight: 'bold',
 

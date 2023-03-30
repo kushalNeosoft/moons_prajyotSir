@@ -1,3 +1,4 @@
+import { ImageOrVideo } from 'react-native-image-crop-picker';
 import {
   REGISTER_DATA,
   REGISTER_RANDOM_DATA,
@@ -11,6 +12,7 @@ import {
   ADD_FONT,
   DEC_FONT,
   REORDER_LIST,
+  IMAGE_CAPTURE,
 } from './actionTypes';
 
 
@@ -59,14 +61,21 @@ export const newLog = (data: { firsttime: boolean; }) =>({
   data,
 })
 
-export const addFont = () =>({  
+export const addFont = (data:any) =>({  
   type:ADD_FONT,
+  data,
   
 })
 
-export const decFont = () =>({  
+export const decFont = (data:any) =>({  
   type:DEC_FONT,
+  data,
   
+})
+
+export const imgcon =(data: any)=>({
+  type:IMAGE_CAPTURE,
+  data
 })
 
 export const reorderList=(data:any)=>({

@@ -2,13 +2,15 @@ import {
     NEW_USER,
     ADD_FONT,
     DEC_FONT,
+    IMAGE_CAPTURE,
 
 } from '../actionTypes';
 
 
 const initialState = {
     firsttime: false,
-    counter: 15
+    counter: 15,
+    imgstore: '',
 };
 
 
@@ -16,6 +18,8 @@ const initialState = {
 const Loginreducer = (state = initialState, action: {
     data: any; type: any;
 }) => {
+    console.log('action',action);
+    
     switch (action.type) {
         case NEW_USER:
             return {
@@ -26,13 +30,20 @@ const Loginreducer = (state = initialState, action: {
         case ADD_FONT:
             return {
                 ...state,
-                counter: state.counter + 1,
+                counter: action.data.counter,
             };
         case DEC_FONT:
             return {
                 ...state,
-                counter: state.counter - 1,
+                counter: action.data.counter,
             };
+        case IMAGE_CAPTURE:
+            return {
+                ...state,
+                imgstore: action.data.imgstore,
+            };
+
+
 
 
         default:

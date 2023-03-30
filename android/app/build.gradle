@@ -93,12 +93,15 @@ android {
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
+    
 
     namespace "com.demo_new_moon"
     defaultConfig {
         applicationId "com.demo_new_moon"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        vectorDrawables.useSupportLibrary = true
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }

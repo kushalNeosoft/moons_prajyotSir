@@ -7,7 +7,7 @@ import {
   FlatList,
   Animated,
 } from "react-native";
-import { BannerData } from "./BannerData/Bannerdata";
+import { BannerData } from "../../Customdrawer/Bannerdata";
 import Slide from "./Slide";
 
 const { width, heigth } = Dimensions.get("window");

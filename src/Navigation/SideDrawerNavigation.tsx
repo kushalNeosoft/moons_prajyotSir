@@ -17,7 +17,7 @@ import Banner from '../Component/Sidercomonent/Banner/Banner';
 import { Screeone } from '../Screens/Screenone/Screenone';
 
 import { DrawerActions, useNavigation } from '@react-navigation/native';
-import { BannerData } from '../Component/Sidercomonent/Banner/BannerData/Bannerdata';
+import { BannerData } from '../Component/Customdrawer/Bannerdata';
 import { DrawerMenu } from '../Component/Customdrawer/Drawermenu';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 

@@ -3,7 +3,6 @@ import { Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
 import { Drawerstyling } from './Drawerstyling';
 import React, { useEffect, useState } from 'react';
 import Banner from '../Sidercomonent/Banner/Banner';
-import { BannerData } from '../Sidercomonent/Banner/BannerData/Bannerdata';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Funds from '../Fund/Funds';
@@ -14,13 +13,23 @@ import { useTranslation } from 'react-i18next';
 import dynamicDrawerData from './dynamicmenu.json';
 import { Dimensions } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
+import { useSelector } from 'react-redux';
+import { BannerData } from './Bannerdata';
 
 export const DrawerMenu = () => {
     const { t } = useTranslation();
     const navigation = useNavigation()
     const [checked, setChecked] = React.useState('Light');
+    const storeimg = useSelector(state => state.Login.imgstore);
+    const newfont = useSelector(state => state.Login.counter);
+    const urldf='https://reactnative.dev/img/tiny_logo.png';
     const navtoScreen = () => {
         navigation.navigate('Settings')
+    }
+    console.log(BannerData[0].url,"IMGGHGGGG_____>");
+    
+    const navtoProfile = () => {
+        navigation.navigate('Profile')
     }
     const width = Dimensions.get('window').width;
 
@@ -33,10 +42,11 @@ export const DrawerMenu = () => {
                         width={width}
                         height={width / 2.5}
                         autoPlay={true}
-                        data={[...new Array(2).keys()]}
+                        data={BannerData}
                         scrollAnimationDuration={1000}
-                        onSnapToItem={(index) => console.log('current index:', index)}
-                        renderItem={({ index }) => (
+                        pagingEnabled={true}
+                        // onSnapToItem={(index) => console.log('current index:', index)}
+                        renderItem={({item}) => (
                             <View
                                 style={{
                                     flex:1,
@@ -45,6 +55,12 @@ export const DrawerMenu = () => {
                                 }}
                             >
                                 <View style={Drawerstyling.slideimgcon}>
+                                   <Image
+                                   source={{
+                                    uri:item.url,
+                                   }}
+                                   style={Drawerstyling.slideimgcontwo}
+                                   />
 
                                 </View>
 
@@ -55,13 +71,19 @@ export const DrawerMenu = () => {
                 
 
 
-            </View><View style={Drawerstyling.Innerconone}>
+            </View>
+            <TouchableOpacity onPress={navtoProfile}>
+            <View style={Drawerstyling.Innerconone}>
                     <View style={Drawerstyling.Imgcon}>
                         <Image
                             style={Drawerstyling.imagemain}
-                            source={{
-                                uri: 'https://reactnative.dev/img/tiny_logo.png',
-                            }} />
+                            source={
+                                storeimg == ''
+                                  ? { uri: urldf }
+                                  : { uri:storeimg }
+                                  
+                              }
+                             />
 
                     </View>
                     <View style={Drawerstyling.stylingtxt}>
@@ -70,7 +92,9 @@ export const DrawerMenu = () => {
                     </View>
                     <Entypo name="chevron-small-right" size={30} color='#000080' />
 
-                </View></>
+                </View>
+                </TouchableOpacity>
+                </>
 
         );
     };
@@ -83,7 +107,9 @@ export const DrawerMenu = () => {
                     <>
                         <View style={Drawerstyling.Innercotwo}>
                             <View style={Drawerstyling.Innertwoone}>
-                                <Text style={Drawerstyling.texticon}>{t(item?.name)}</Text>
+                                <Text style={[Drawerstyling.texticon,{
+                                    fontSize:newfont
+                                }]}>{t(item?.name)}</Text>
                                 <Entypo name="chevron-small-right" size={30} color='#000080' />
                             </View>
                             <Funds />
@@ -94,7 +120,9 @@ export const DrawerMenu = () => {
                         <>
                             <View style={Drawerstyling.Innercothree}>
                                 <View style={Drawerstyling.Innertwoone}>
-                                    <Text style={Drawerstyling.texticon}>{t(item?.name)}</Text>
+                                    <Text style={[Drawerstyling.texticon,{
+                                        fontSize:newfont
+                                    }]}>{t(item?.name)}</Text>
                                     <Entypo name="chevron-small-right" size={30} color='#000080' />
                                 </View>
 
@@ -143,7 +171,9 @@ export const DrawerMenu = () => {
                                         <View style={Drawerstyling.Innercotwo}>
                                             <TouchableOpacity onPress={navtoScreen}>
                                                 <View style={Drawerstyling.Innertwoone}>
-                                                    <Text style={Drawerstyling.texticon}>{t(item?.name)}</Text>
+                                                    <Text style={[Drawerstyling.texticon,{
+                                                        fontSize:newfont
+                                                    }]}>{t(item?.name)}</Text>
                                                     <Entypo name="chevron-small-right" size={30} color='#000080' />
                                                 </View>
                                             </TouchableOpacity>
@@ -170,7 +200,9 @@ export const DrawerMenu = () => {
                                         <>
                                             <View style={Drawerstyling.Innercokyc}>
                                                 <View style={Drawerstyling.Innertwoone}>
-                                                    <Text style={Drawerstyling.texticon}>{t(item?.name)}</Text>
+                                                    <Text style={[Drawerstyling.texticon,{
+                                                        fontSize:newfont
+                                                    }]}>{t(item?.name)}</Text>
                                                     <Entypo name="chevron-small-right" size={30} color='#000080' />
                                                 </View>
                                                 <View style={Drawerstyling.Buttomtxtcon}>
@@ -206,7 +238,9 @@ export const DrawerMenu = () => {
                                             <>
                                                 <TouchableOpacity >
                                                     <View style={Drawerstyling.Innercon}>
-                                                        <Text style={Drawerstyling.texticon}>{t(item?.name)}</Text>
+                                                        <Text style={[Drawerstyling.texticon,{
+                                                            fontSize:newfont
+                                                        }]}>{t(item?.name)}</Text>
                                                         {item?.name == 'Log Out' ?
                                                             <>
                                                                 <MaterialCommunityIcons name="logout" size={30} color='#000080' />

@@ -16,6 +16,7 @@ import {
 import BuySell from "../Screens/BuySell/BuySell";
 import MyTabs from "./topTabNavigation";
 import { useSelector } from "react-redux";
+import Profile from "../Screens/Profile/Profile";
 
 export type AppStackParamList = {
   Dashboard: undefined;
@@ -26,6 +27,7 @@ export type AppStackParamList = {
   ForgotPassword: undefined;
   Login: undefined;
   Otp: undefined;
+  Profile:undefined;
 
 };
 export type dashboardScreenProp = StackNavigationProp<
@@ -52,6 +54,7 @@ export const DashboardNavigation = () => {
         <DashboardNavigator.Screen name="Login" component={Login} options={{gestureEnabled:false}} />
       }
       <DashboardNavigator.Screen name="StockDetails" component={BottomTab} />
+      <DashboardNavigator.Screen name="Profile" component={Profile} />
       <DashboardNavigator.Screen name="BuySell" component={BuySell} />
       <DashboardNavigator.Screen name="Settings" component={Settings} />
       <DashboardNavigator.Screen name="Constituents" component={MyTabs} />
