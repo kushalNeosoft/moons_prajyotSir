@@ -58,6 +58,7 @@ export const DashboardNavigation = () => {
       <DashboardNavigator.Screen name="BuySell" component={BuySell} />
       <DashboardNavigator.Screen name="Settings" component={Settings} />
       <DashboardNavigator.Screen name="Constituents" component={MyTabs} />
+      <DashboardNavigator.Screen name="Dashboard" component={Dashboardscreen} />
 
       <DashboardNavigator.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
 

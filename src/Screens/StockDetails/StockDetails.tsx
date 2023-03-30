@@ -40,11 +40,11 @@ function StockDetails({navigation}: StockListProps) {
   const toggleRef=useRef(true)
 
   useEffect(() => {
-    const changeData=setInterval(()=>{
+    // const changeData=setInterval(()=>{
       pushStockData();
-    },2000)
+    // },2000)
 
-    return()=>clearInterval(changeData)
+    // return()=>clearInterval(changeData)
   }, []);
 
   const onPress = useCallback(() => {

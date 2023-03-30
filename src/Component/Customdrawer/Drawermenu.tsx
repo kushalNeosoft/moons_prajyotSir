@@ -31,6 +31,13 @@ export const DrawerMenu = () => {
     const navtoProfile = () => {
         navigation.navigate('Profile')
     }
+
+    const navtodashboard = () => {
+   
+            navigation.navigate('Dashboard')
+       
+       
+    }
     const width = Dimensions.get('window').width;
 
     const ListHeader = () => {
@@ -105,6 +112,7 @@ export const DrawerMenu = () => {
             <View style={Drawerstyling.Maincon}>
                 {item?.displayName == 'Funds' ?
                     <>
+                    <TouchableOpacity onPress={navtodashboard}>
                         <View style={Drawerstyling.Innercotwo}>
                             <View style={Drawerstyling.Innertwoone}>
                                 <Text style={[Drawerstyling.texticon,{
@@ -114,6 +122,7 @@ export const DrawerMenu = () => {
                             </View>
                             <Funds />
                         </View>
+                        </TouchableOpacity>
                     </>
                     :
                     item?.displayName == 'Need Help' ?
@@ -236,7 +245,7 @@ export const DrawerMenu = () => {
                                             null
                                             :
                                             <>
-                                                <TouchableOpacity >
+                                                <TouchableOpacity  >
                                                     <View style={Drawerstyling.Innercon}>
                                                         <Text style={[Drawerstyling.texticon,{
                                                             fontSize:newfont
