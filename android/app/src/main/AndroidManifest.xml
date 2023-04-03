@@ -20,6 +20,8 @@
       <meta-data
      android:name="com.google.android.geo.API_KEY"
      android:value="AIzaSyAJHETQpZzbPCYdXFak2eKwkbQCyS98FMs"/>
+      <activity android:name="com.facebook.flipper.android.diagnostics.FlipperDiagnosticActivity"
+        android:exported="true"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
