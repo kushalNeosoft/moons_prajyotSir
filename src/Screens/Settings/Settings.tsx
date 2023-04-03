@@ -1,11 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {View, TouchableOpacity,Text} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFont, decFont } from '../../Redux/Action';
-
 import {LanguageModal} from './LanguageSettings';
 import {SettingsScreenStyle} from './Settings.style';
 

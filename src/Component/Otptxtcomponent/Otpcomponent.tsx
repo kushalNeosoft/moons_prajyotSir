@@ -7,6 +7,8 @@ import Textinputfield from "../TextInput";
 import { Styleotp } from "./Styleotp";
 import DropdownComponent from "../Dropdown/Dropdown";
 import { useNavigation } from "@react-navigation/native";
+import { funContext } from "../../context/AppContext";
+import { one } from "../../function/Function";
 
 
 const data = [
@@ -42,6 +44,7 @@ const Otpcomponent = () => {
         setOtp(tempOtpArray);
         if(activeOTPindex===3){
             navigation.navigate('StockDetails')
+            one();
         }
         
     }
@@ -111,6 +114,10 @@ const Otpcomponent = () => {
 
 
     return (
+        <funContext.Provider value={{
+            one
+            
+        }}>
         <View style={Styleotp.Maincon}>
             <View >
                 <Text style={Styleotp.styletxt}>Enter M-Pin</Text>
@@ -200,6 +207,7 @@ const Otpcomponent = () => {
 
             </View>
         </View>
+        </funContext.Provider>
     )
 }
 

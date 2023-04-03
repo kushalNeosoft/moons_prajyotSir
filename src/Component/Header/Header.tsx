@@ -92,7 +92,7 @@ function Header(props:any) {
         otherValue={otherValue}
       />
       <View style={styles.container}>
-        <TouchableOpacity style={{borderWidth:1,backgroundColor:"yellow"}} onPress={()=>navigation.openDrawer()}>
+        <TouchableOpacity style={{borderWidth:1,backgroundColor:"yellow"}} onPress={()=>navigation.toggleDrawer()}>
           <Text>Open</Text>
         </TouchableOpacity>
         <FlatList

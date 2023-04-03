@@ -11,6 +11,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {login, newLog} from '../../Redux/Action';
 import Toast from 'react-native-toast-message';
 import { useNavigation } from '@react-navigation/native';
+import { funContext } from '../../context/AppContext';
+import { one } from '../../function/Function';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 function Login() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -32,8 +35,13 @@ function Login() {
   const validateAndProceed = async (userName: any, password: any) => {
     if (userName !== '' && regex.password.test(password)) {
       dispatch(newLog({firsttime:true}))
+      
       navigation.navigate('StockDetails');
       showToast();
+      // crashlytics().recordError(error)
+      one();
+      
+      
     }
   };
 
@@ -58,6 +66,9 @@ function Login() {
   };
 
   return (
+    // <funContext.Provider value={{
+    //   one
+    // }}>
     <SafeAreaView
       style={modalVisible ? styles.containerBlur : styles.container}>
       <View style={styles.headerView}>
@@ -112,6 +123,8 @@ function Login() {
       </View>
       <TimingModal visible={modalVisible} onClose={onClose} />
     </SafeAreaView>
+    // </funContext.Provider>
+
   );
 }
 

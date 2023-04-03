@@ -9,7 +9,9 @@ import KeepAwake from 'react-native-keep-awake';
 import { checkRooted } from "./src/utils/checkRooted";
 import { NetworkInfo } from "react-native-network-info";
 import IMEI from "react-native-imei";
-
+import crashlytics from '@react-native-firebase/crashlytics';
+import { funContext } from "./src/context/AppContext";
+import { one } from "./src/function/Function";
 
 var DeviceInfo = require('react-native-device-info');
 const version = DeviceInfo.getVersion();
@@ -65,6 +67,7 @@ const App = () => {
 
   useEffect(() => {
     KeepAwake.activate();
+    // crashlytics().crash();
     console.log(KeepAwake,"JJSJJSJSJS----->>>");
     
     return () => {
@@ -73,12 +76,18 @@ const App = () => {
   }, []);
 
   return (
-    <Provider store={store}>
+   
+     <Provider store={store}>
+
       <PersistGate persistor={persistor}loading={null}>
         <AppNavigation />
       </PersistGate>
 
+
     </Provider>
+    
+   
+    
 
   )
 }
