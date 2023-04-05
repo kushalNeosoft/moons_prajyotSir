@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useCallback, useRef,useContext} from 'react';
-import {Image, LogBox} from 'react-native';
+import {Alert, BackHandler, Image, LogBox} from 'react-native';
 import {View, Text, FlatList, TouchableOpacity, Dimensions} from 'react-native';
 import DotModal from '../../Component/DotModal/DotModal';
 import Header from '../../Component/Header/Header';
@@ -40,11 +40,33 @@ function StockDetails({navigation}: StockListProps) {
   const toggleRef=useRef(true)
 
   useEffect(() => {
+      // const backAction =() =>{
+      //   Alert.alert("Stop","Are you sure you want to exit ",[
+      //     {
+      //       text:'Cancle',
+      //       onPress:()=>null,
+      //       style:'cancel'
+      //     },
+      //     {
+      //       text:"Yes",
+      //       onPress:()=>BackHandler.exitApp()
+      //     }
+      //   ]);
+      //   return true;
+      // }
+      // const backHandler = BackHandler.addEventListener(
+      //   "hardwareBackPress",
+      //   backAction
+      // )
+
+
+
     // const changeData=setInterval(()=>{
       pushStockData();
     // },2000)
 
     // return()=>clearInterval(changeData)
+
   }, []);
 
   const onPress = useCallback(() => {

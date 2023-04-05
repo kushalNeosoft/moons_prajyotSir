@@ -35,11 +35,10 @@ function Login() {
   const validateAndProceed = async (userName: any, password: any) => {
     if (userName !== '' && regex.password.test(password)) {
       dispatch(newLog({firsttime:true}))
-      
       navigation.navigate('StockDetails');
       showToast();
       // crashlytics().recordError(error)
-      one();
+      // one();
       
       
     }

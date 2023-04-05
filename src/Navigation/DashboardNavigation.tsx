@@ -7,6 +7,8 @@ import ForgotPasswordScreen from "../Screens/forgetpassword/Forgetpass";
 import Login from "../Screens/Login/Login";
 import Otp from "../Screens/OTP/Otpscreen";
 import StockDetails from "../Screens/StockDetails/StockDetails";
+import PhoneEmail from "../Screens/PhoneEmail/PhoneEmail";
+import DataLazyLoading from "../Screens/lazy/DataLazyLoading";
 
 import BottomTab from "./BottomTab";
 import {
@@ -28,26 +30,22 @@ export type AppStackParamList = {
   Login: undefined;
   Otp: undefined;
   Profile:undefined;
-
+  Constituents:undefined;
+  PhoneEmail:undefined;
+  DataLazyLoading:undefined;
 };
 export type dashboardScreenProp = StackNavigationProp<
-  AppStackParamList,
-  'Dashboard',
-  'BuySell'
+  AppStackParamList
 
 >;
 
-const DashboardNavigator = createStackNavigator<AppStackParamList>();
+const DashboardNavigator = createStackNavigator();
 
 export const DashboardNavigation = () => {
-
-
-
-  const newLog = useSelector(state => state.Login.firsttime);
-  console.log(newLog, "gdgdgdgdgdgdgdg------------->>>>>>>>")
+  const newLog = useSelector(state => state.Login.firsttime );
   return (
 
-    <DashboardNavigator.Navigator screenOptions={stackOptions} >
+    <DashboardNavigator.Navigator screenOptions={stackOptions}  >
       {newLog?
         <DashboardNavigator.Screen name="Otp" component={Otp} options={{gestureEnabled:false}} />
         :
@@ -61,6 +59,8 @@ export const DashboardNavigation = () => {
       <DashboardNavigator.Screen name="Dashboard" component={Dashboardscreen} />
 
       <DashboardNavigator.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <DashboardNavigator.Screen name="PhoneEmail" component={PhoneEmail} />
+      <DashboardNavigator.Screen name="DataLazyLoading" component={DataLazyLoading} />
 
 
 
@@ -71,18 +71,3 @@ export const DashboardNavigation = () => {
   );
 };
 
-export const dashboardScreenOptions = (props: any) => {
-  return {
-    title: 'Dashboard',
-    headerLeft: () => (
-      <HeaderButtons >
-        <Item
-          title="menu"
-          iconName="menu-outline"
-          onPress={() => props.navigation.toggleDrawer()}
-        />
-      </HeaderButtons>
-    ),
-
-  };
-};

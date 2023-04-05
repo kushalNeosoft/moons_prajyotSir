@@ -35,18 +35,24 @@ const Otpcomponent = () => {
      
         const tempOtpArray = otp?.concat();
         tempOtpArray[index] = val.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/gi, '');
+        // console.log('activeOTPindex before',activeOTPindex);
+        // let ind= activeOTPindex;
+        console.log('activeOTPindex',index);
         if (!val) {
-            if (activeOTPindex > 0) {
+            if (index > 0) {
                 setActiveOTPIndex(index - 1)
-            }
+                console.log('prv activeOTPindex back key press',index-1);
+            } 
+        }else{
+            setActiveOTPIndex(index + 1)
+            console.log('nxt activeOTPindex',index+1);
         }
-        else setActiveOTPIndex(index + 1)
         setOtp(tempOtpArray);
-        if(activeOTPindex===3){
+        if(index===3){
             navigation.navigate('StockDetails')
             one();
         }
-        
+        // console.log(activeOTPindex,"SSSSS--->>")
     }
 
     // const handelonchange = (val:any) => {

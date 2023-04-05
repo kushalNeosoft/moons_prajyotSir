@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { InAppBrowser } from 'react-native-inappbrowser-reborn';
 
 export const Needtxt = () => {
-    const navigation = useNavigation();
     const { t } = useTranslation();
 
     const onPressToWebbrowser = (browserurl: string, drawerType: string) => {
@@ -26,29 +25,26 @@ export const Needtxt = () => {
         }
 
     }
-    const renderItem = ({item}:{item:any}) => {
-        console.log(item,"DDDDDD------>");
-        
-        return (
-            <View style={Needstyle.newmaincon}>
+    type ItemProps = {title: string,drawerType:string,url:string};
+    const Item = ({title,drawerType,url}: ItemProps) => (
+        <View style={Needstyle.newmaincon}>
                 <View style={Needstyle.maincontainer}>
-                            <TouchableOpacity onPress={()=>onPressToWebbrowser(item?.url,item.drawerType)}>
+                            <TouchableOpacity onPress={()=>onPressToWebbrowser(url,drawerType)}>
                                 <View style={Needstyle.innercon}>
-                                    <Text style={Needstyle.txtstyle}>{t(item?.title)}</Text>
+                                    <Text style={Needstyle.txtstyle}>{t(title)}</Text>
                                 </View>
                             </TouchableOpacity>
                 </View>
 
 
             </View >
-
-        )
-    }
+      );
+      
     const nocolumn =2
     return (
         <FlatList
             data={Needhelp}
-            renderItem={renderItem}
+            renderItem={({item}) => <Item title={item.title} drawerType={item.drawerType} url={item.url} />}
             keyExtractor={(item) => String(item.index)}
             numColumns={nocolumn}
         />
