@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, SafeAreaView, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, SafeAreaView, Image, TouchableOpacity, ScrollView, BackHandler, Alert } from "react-native";
 import { Otpstyle } from "./Otpstyle";
 import { Dropdown } from 'react-native-element-dropdown';
 import Tabnavigation from "../../Navigation/Tabnavigation";
 import { useSelector } from "react-redux";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 const data = [
     { label: 'Item 1', value: '1' },
@@ -18,8 +19,38 @@ const data = [
 
 const Otp = () => {
     const [selectedTab, setSelectedTab] = useState(3);
+   
     const [value, setValue] = useState(null);
-    const urldf='https://reactnative.dev/img/tiny_logo.png';
+
+    useFocusEffect(
+        React.useCallback(()=>{
+          const backAction = () => {
+            Alert.alert("Stop", "Are you sure you want to exit ", [
+              {
+                text: 'Cancle',
+                onPress: () => null,
+                style: 'cancel'
+              },
+              {
+                text: "Yes",
+                onPress: () => BackHandler.exitApp()
+              }
+            ]);
+            return true;
+          }
+          BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+          );
+          return () =>{
+            BackHandler.removeEventListener(
+              "hardwareBackPress",
+              backAction
+            );
+          }
+        },[]),
+       )
+    const urldf = 'https://reactnative.dev/img/tiny_logo.png';
     const storeimg = useSelector(state => state.Login.imgstore);
     return (
         <View style={Otpstyle.Maincontainer}>
@@ -30,10 +61,10 @@ const Otp = () => {
                             style={Otpstyle.tinyLogo}
                             source={
                                 storeimg == ''
-                                  ? { uri: urldf }
-                                  : { uri:storeimg }
-                                  
-                              }
+                                    ? { uri: urldf }
+                                    : { uri: storeimg }
+
+                            }
                         />
 
                     </View>
@@ -54,10 +85,10 @@ const Otp = () => {
                         valueField="value"
                         placeholder="Switch Account"
                         value={value}
-                        onChange={(item:string) => {
+                        onChange={(item: string) => {
                             setValue(item.value);
                         }}
-                        
+
                     />
                 </View>
 

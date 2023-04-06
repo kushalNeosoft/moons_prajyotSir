@@ -15,7 +15,11 @@ import { one } from "./src/function/Function";
 
 var DeviceInfo = require('react-native-device-info');
 const version = DeviceInfo.getVersion();
-
+const [applicationName, setApplicationName] = useState<string>();
+const [applicationVersion, setApplicationVersion] = useState<string>();
+const [location, setLocation] = useState<string>();
+  
+  const [packageName, setPackageName] = useState<string>();
 
 const App = () => {
 
@@ -30,11 +34,17 @@ const App = () => {
     fetchData();
   }, []);
   const fetchData = async () => {
+    setApplicationName(DeviceInfo.getApplicationName());
+    setApplicationVersion(DeviceInfo.getVersion());
+    //setUuid(DeviceInfo.getInstanceId());
+    //console.log("UUID : " + DeviceInfo.getInstanceId());
+    console.log("Application Name : " + DeviceInfo.getApplicationName());
+    console.log("Application Version : " + DeviceInfo.getVersion());
     console.log("Device Model : " + DeviceInfo.getModel());
     console.log("Device Brand : " + DeviceInfo.getBrand());
     // console.log("Device Carrier : " + DeviceInfo.getCarrier());
     console.log("Device ID : " + DeviceInfo.getDeviceId());
-    console.log("Application Version : " + DeviceInfo.getVersion());
+   
     //console.log("Device UniqueId : " + DeviceInfo.getUniqueId());
     console.log("Device SystemVersion : " + DeviceInfo.getSystemVersion());
     console.log("Device SerialNumber : "  + DeviceInfo.getSerialNumber());
@@ -43,6 +53,12 @@ const App = () => {
   
   NetworkInfo.getIPAddress().then((ipAddress: any) => {
     console.log("Device IP : " + ipAddress);
+  });
+
+  DeviceInfo.getInstanceId().then((instanceId: any) => {
+    // Android: da4e0245-5d6c-402a-a07c-0c5349f229e2
+    //setUuid(instanceId);
+    console.log("UDID : " + instanceId) ;
   });
 
   IMEI.getImei().then((imeiList: any) => {

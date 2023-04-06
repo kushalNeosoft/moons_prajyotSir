@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {View, TouchableOpacity,Text} from 'react-native';
+import {View, TouchableOpacity,Text, BackHandler, Alert} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFont, decFont } from '../../Redux/Action';
 import {LanguageModal} from './LanguageSettings';
@@ -9,6 +10,7 @@ import {SettingsScreenStyle} from './Settings.style';
 
 export const Settings: React.FC = () => {
   const {t} = useTranslation();
+  const navigation=useNavigation();
   const dispatch=useDispatch();
 
   const [langModalVisible, setLangModalVisible] = useState(false);
@@ -16,6 +18,9 @@ export const Settings: React.FC = () => {
   // const [count, setCount] = useState(15);
   const [selectedLang, setSelectedLang] = useState('en');
   const newcount = useSelector(state => state.Login.counter);
+
+
+  
 
   const onLanguageChange = (langCode: string) => {
     setSelectedLang(langCode);
@@ -26,6 +31,8 @@ export const Settings: React.FC = () => {
     dispatch(addFont({counter:newcount+1}))
     
   };
+
+  
 
   const decrementCount = () => {
     
@@ -46,6 +53,8 @@ export const Settings: React.FC = () => {
     };
     checkAsync();
   }, []);
+
+  
 
   return (
     <View style={SettingsScreenStyle.rootContainer}>

@@ -24,7 +24,7 @@ export type AppStackParamList = {
   Dashboard: undefined;
   BuySell: undefined;
   Settings: undefined;
-  StockDetails: undefined;
+  Stock: undefined;
   MyTabs: undefined
   ForgotPassword: undefined;
   Login: undefined;
@@ -51,7 +51,7 @@ export const DashboardNavigation = () => {
         :
         <DashboardNavigator.Screen name="Login" component={Login} options={{gestureEnabled:false}} />
       }
-      <DashboardNavigator.Screen name="StockDetails" component={BottomTab} />
+      <DashboardNavigator.Screen name="Stock" component={BottomTab} />
       <DashboardNavigator.Screen name="Profile" component={Profile} />
       <DashboardNavigator.Screen name="BuySell" component={BuySell} />
       <DashboardNavigator.Screen name="Settings" component={Settings} />
