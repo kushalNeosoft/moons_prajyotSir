@@ -44,6 +44,10 @@ export const DrawerMenu = React.memo(() => {
         console.log('Came to laz loading')
         navigation.navigate('DataLazyLoading')
     }
+
+    const navtoWebview = () => {
+        navigation.navigate('Webview')
+    }
     const width = Dimensions.get('window').width;
 
     type ItemProps = { displayName: string, name: string };
@@ -58,8 +62,18 @@ export const DrawerMenu = React.memo(() => {
                         height={width / 2.5}
                         autoPlay={true}
                         data={BannerData}
+                       
                         scrollAnimationDuration={1000}
                         pagingEnabled={true}
+                        // onProgressChange={(_, absoluteProgress) =>
+                        //     (progressValue.value = absoluteProgress)
+                        //   }
+                        //   mode="parallax"
+                        //   modeConfig={{
+                        //     parallaxScrollingScale: 0.9,
+                        //     parallaxScrollingOffset: 50,
+                        //   }}
+                        
                         // onSnapToItem={(index) => console.log('current index:', index)}
                         renderItem={({ item }) => (
                             <View
@@ -165,7 +179,7 @@ export const DrawerMenu = React.memo(() => {
                         displayName == 'Contact Us' ?
                             <>
                                 <View style={Drawerstyling.newcontact}>
-                                    <TouchableOpacity style={{ alignItems: "center", borderEndWidth: 1 }}>
+                                    <TouchableOpacity style={{ alignItems: "center", borderEndWidth: 1 }} onPress={navtoWebview}>
                                         <View style={Drawerstyling.usagecon}>
                                             <Text style={Drawerstyling.styleb}>
                                                 {t(name)}

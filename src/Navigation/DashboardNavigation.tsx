@@ -19,6 +19,7 @@ import BuySell from "../Screens/BuySell/BuySell";
 import MyTabs from "./topTabNavigation";
 import { useSelector } from "react-redux";
 import Profile from "../Screens/Profile/Profile";
+import Webview from "../Screens/Webview/Webview";
 
 export type AppStackParamList = {
   Dashboard: undefined;
@@ -61,6 +62,7 @@ export const DashboardNavigation = () => {
       <DashboardNavigator.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
       <DashboardNavigator.Screen name="PhoneEmail" component={PhoneEmail} />
       <DashboardNavigator.Screen name="DataLazyLoading" component={DataLazyLoading} />
+      <DashboardNavigator.Screen name="Webview" component={Webview} />
 
 
 

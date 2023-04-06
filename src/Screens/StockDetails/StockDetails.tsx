@@ -52,6 +52,12 @@ function StockDetails() {
 
   }, []);
 
+  const newtwocall =()=>{
+    BackHandler.exitApp()
+    navigation.navigate('Otp')
+
+  }
+
   useFocusEffect(
     React.useCallback(()=>{
       const backAction = () => {
@@ -63,21 +69,24 @@ function StockDetails() {
           },
           {
             text: "Yes",
-            onPress: () => BackHandler.exitApp()
+            onPress: () => newtwocall()
+
+
           }
         ]);
         return true;
       }
-      BackHandler.addEventListener(
+      const backHandler =  BackHandler.addEventListener(
         "hardwareBackPress",
         backAction
       );
-      return () =>{
-        BackHandler.removeEventListener(
-          "hardwareBackPress",
-          backAction
-        );
-      }
+      return () => backHandler.remove();
+      // return () =>{
+      //   BackHandler.removeEventListener(
+      //     "hardwareBackPress",
+      //     backAction
+      //   );
+      // }
     },[]),
    )
   const onPress = useCallback(() => {

@@ -57,6 +57,7 @@ const BottomTab = () => {
   const renderTabBar = ({routeName, selectedTab, navigate}: any) => {
     return (
       <TouchableOpacity
+      activeOpacity={1}
         onPress={() => navigate(routeName)}
         style={{
           flex: 1,
@@ -69,7 +70,7 @@ const BottomTab = () => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    // <View style={{flex: 1}}>
         <CurvedBottomBar.Navigator
           screenOptions={{headerShown: false}}
           style={styles.bottomBar}
@@ -124,7 +125,7 @@ const BottomTab = () => {
             position="CIRCLE"
           />
         </CurvedBottomBar.Navigator>
-    </View>
+    // </View>
   );
 };
 

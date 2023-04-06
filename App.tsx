@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import { checkRooted } from "./src/utils/checkRooted";
 import { NetworkInfo } from "react-native-network-info";
-import IMEI from "react-native-imei";
+// import IMEI from "react-native-imei";
 import crashlytics from '@react-native-firebase/crashlytics';
 import { funContext } from "./src/context/AppContext";
 import { one } from "./src/function/Function";
@@ -63,9 +63,9 @@ const [location, setLocation] = useState<string>();
     console.log("UDID : " + instanceId) ;
   });
 
-  IMEI.getImei().then((imeiList: any) => {
-    console.log(imeiList)
-});
+//   // IMEI.getImei().then((imeiList: any) => {
+//     console.log(imeiList)
+// });
   
   //  NetworkInfo.getIPAddress((ip: any) => {
   //    console.log("Kushal IP :" +ip);

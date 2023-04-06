@@ -38,16 +38,11 @@ const Otp = () => {
             ]);
             return true;
           }
-          BackHandler.addEventListener(
+          const backHandler =  BackHandler.addEventListener(
             "hardwareBackPress",
             backAction
           );
-          return () =>{
-            BackHandler.removeEventListener(
-              "hardwareBackPress",
-              backAction
-            );
-          }
+          return () => backHandler.remove();
         },[]),
        )
     const urldf = 'https://reactnative.dev/img/tiny_logo.png';
