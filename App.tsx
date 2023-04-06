@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
 import 'react-native-gesture-handler';
 import { AppNavigation } from "./src/Navigation/AppNavigation";
 import { requestUserPermission, notificationListener } from "./src/utils/notification";
@@ -14,14 +14,16 @@ import { funContext } from "./src/context/AppContext";
 import { one } from "./src/function/Function";
 
 var DeviceInfo = require('react-native-device-info');
+
+
+const App = () => {
+  
 const version = DeviceInfo.getVersion();
 const [applicationName, setApplicationName] = useState<string>();
 const [applicationVersion, setApplicationVersion] = useState<string>();
 const [location, setLocation] = useState<string>();
   
   const [packageName, setPackageName] = useState<string>();
-
-const App = () => {
 
   React.useEffect(() => {
     checkRooted();
