@@ -6690,6 +6690,11 @@ react-native-element-dropdown@^2.8.0:
   resolved "https://registry.npmjs.org/react-native-element-dropdown/-/react-native-element-dropdown-2.8.0.tgz"
   integrity sha512-kYO+JAHqq+Nqlg3kCHS5AIrKM/sV1h9ZtjWvLWcCuv+HjuuMe0fS+B30uHH8IXzT4CzIkCWL+pE0nxINIKi4eA==
 
+react-native-exit-app@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/react-native-exit-app/-/react-native-exit-app-1.1.0.tgz"
+  integrity sha512-Spne19zfMfJvnUTX909EHUqWMk69rATtLJq9XMBGpNSHhx0M7v5yetx2Z87egBhLOqQm+CWfD/oxWzDG8rbIQA==
+
 react-native-fast-image@^8.6.3:
   version "8.6.3"
   resolved "https://registry.npmjs.org/react-native-fast-image/-/react-native-fast-image-8.6.3.tgz"

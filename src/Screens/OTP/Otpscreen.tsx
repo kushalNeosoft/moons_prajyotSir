@@ -5,6 +5,8 @@ import { Dropdown } from 'react-native-element-dropdown';
 import Tabnavigation from "../../Navigation/Tabnavigation";
 import { useSelector } from "react-redux";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import RNExitApp from 'react-native-exit-app';
+
 
 const data = [
     { label: 'Item 1', value: '1' },
@@ -33,7 +35,7 @@ const Otp = () => {
               },
               {
                 text: "Yes",
-                onPress: () => BackHandler.exitApp()
+                onPress: () => RNExitApp.exitApp()
               }
             ]);
             return true;

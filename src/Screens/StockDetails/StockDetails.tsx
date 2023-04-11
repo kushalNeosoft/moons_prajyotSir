@@ -16,6 +16,7 @@ import BottomSheet, { BottomSheetRefProps } from '../../Component/BottomSheet/Bo
 import { CommonActions, useFocusEffect, useNavigation } from '@react-navigation/native';
 import CarouselList from '../../Component/CarouselList/CarouselList';
 import { ListItemProps } from '../../Component/CarouselList/type';
+import RNExitApp from 'react-native-exit-app';
 import BuySell from '../BuySell/BuySell';
 import ThemeContext from '../../context/AppContext';
 
@@ -52,12 +53,6 @@ function StockDetails() {
 
   }, []);
 
-  const newtwocall =()=>{
-    BackHandler.exitApp()
-    navigation.navigate('Otp')
-
-  }
-
   useFocusEffect(
     React.useCallback(()=>{
       const backAction = () => {
@@ -69,7 +64,7 @@ function StockDetails() {
           },
           {
             text: "Yes",
-            onPress: () => newtwocall()
+            onPress: () => RNExitApp.exitApp()
 
 
           }
@@ -81,12 +76,7 @@ function StockDetails() {
         backAction
       );
       return () => backHandler.remove();
-      // return () =>{
-      //   BackHandler.removeEventListener(
-      //     "hardwareBackPress",
-      //     backAction
-      //   );
-      // }
+      
     },[]),
    )
   const onPress = useCallback(() => {

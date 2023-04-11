@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
   Alert,
   Animated,
@@ -9,123 +9,108 @@ import {
   Text,
   LogBox,
 } from 'react-native';
-import {CurvedBottomBar} from 'react-native-curved-bottom-bar';
-import {NavigationContainer} from '@react-navigation/native';
+import { CurvedBottomBar } from 'react-native-curved-bottom-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Svg, { Path } from 'react-native-svg'
 import StockDetails from '../Screens/StockDetails/StockDetails';
+import Fontisto from 'react-native-vector-icons/Fontisto'
 import Screen1 from '../Screens/Extra/Screen1';
 import Screen2 from '../Screens/Extra/Screen2';
 import Screen3 from '../Screens/Extra/Screen3';
 import Screen4 from '../Screens/Extra/Screen4';
 
 // LogBox.ignoreAllLogs()
-
+const Tab = createBottomTabNavigator();
 const BottomTab = () => {
-  const _renderIcon = (routeName: any, selectedTab: any) => {
-    switch (routeName) {
-      case 'StockDetails':
-        return (
-          <Image
-            source={require('../assets/watchlist.png')}
-            style={{height: 25, width: 25}}
-          />
-        );
-        break;
-      case 'Screen2':
-        return (
-          <Image
-            source={require('../assets/market.png')}
-            style={{height: 25, width: 25}}
-          />
-        );
-      case 'Screen3':
-        return (
-          <Image
-            source={require('../assets/orders.png')}
-            style={{height: 25, width: 25}}
-          />
-        );
-      case 'Screen4':
-        return (
-          <Image
-            source={require('../assets/portfolio.jpeg')}
-            style={{height: 30, width: 30}}
-          />
-        );
-        break;
-    }
-  };
-  const renderTabBar = ({routeName, selectedTab, navigate}: any) => {
-    return (
-      <TouchableOpacity
-      activeOpacity={1}
-        onPress={() => navigate(routeName)}
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        {_renderIcon(routeName, selectedTab)}
-      </TouchableOpacity>
-    );
-  };
+  
+  const CustomButton = () => (
+    <View
+      style={{
+        alignItems: "center",
+      }}
 
+    >
+      <Svg
+        width={94}
+        height={38}
+        viewBox="0 0 94 40"
+        
+      >
+        <Path
+          d="M.333 0c7.364 0 13.334 5.969 13.334 13.333v3.334C13.667 29.553 34.113 40 47 40c13 .5 33.333-10.447 33.333-23.333v-3.334C80.333 5.97 86.303 0 93.667 0H.333z"
+          fill="#F5F5F5"
+        />
+      </Svg>
+      <TouchableOpacity >
+        <View style={styles.customtab}>
+          <Fontisto name="search" size={25} style={{ transform: [{ rotate: '-45deg' }] }} />
+        </View>
+      </TouchableOpacity>
+
+    </View>
+  );
+  
   return (
-    // <View style={{flex: 1}}>
-        <CurvedBottomBar.Navigator
-          screenOptions={{headerShown: false}}
-          style={styles.bottomBar}
-          height={55}
-          circleWidth={50}
-          bgColor="white"
-          initialRouteName="title1"
-          borderTopLeftRight
-          renderCircle={({selectedTab, navigate}) => (
-            <Animated.View style={styles.btnCircle}>
-              <TouchableOpacity
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                }}
-                onPress={() => navigate('Screen1')}>
-                <Image
-                  source={require('../assets/search.png')}
-                  style={{
-                    height: 25,
-                    width: 25,
-                    transform: [{rotate: '45deg'}],
-                  }}
-                />
-              </TouchableOpacity>
-            </Animated.View>
-          )}
-          tabBar={renderTabBar}>
-          <CurvedBottomBar.Screen
-            name="StockDetails"
-            position="LEFT"
-            component={StockDetails}
-          />
-          <CurvedBottomBar.Screen
-            name="Screen2"
-            component={Screen2}
-            position="LEFT"
-          />
-          <CurvedBottomBar.Screen
-            name="Screen3"
-            component={Screen3}
-            position="RIGHT"
-          />
-          <CurvedBottomBar.Screen
-            name="Screen4"
-            component={Screen4}
-            position="RIGHT"
-          />
-          <CurvedBottomBar.Screen
-            name="Screen1"
-            component={Screen1}
-            position="CIRCLE"
-          />
-        </CurvedBottomBar.Navigator>
-    // </View>
+    <Tab.Navigator screenOptions={{
+      headerShown: false,
+      tabBarShowLabel: false,
+      tabBarStyle: { position: 'absolute' },
+    }}
+
+    >
+      <Tab.Screen name="StockDetails"
+        component={StockDetails}
+
+        options={{
+          tabBarIcon: () => (
+            <Image
+              source={require('../assets/watchlist.png')}
+              style={{ height: 25, width: 25 }}
+            />
+          )
+
+        }}
+      />
+      <Tab.Screen name="Right" component={Screen1}
+        options={{
+          tabBarIcon: () => (
+            <Image
+              source={require('../assets/market.png')}
+              style={{ height: 25, width: 25 }}
+            />
+          )
+        }}
+      />
+      <Tab.Screen name="Settings" component={Screen2}
+        options={{
+          tabBarButton: (props) => <CustomButton {...props} />,
+        }}
+      />
+      <Tab.Screen name="Settingsone" component={Screen3}
+        options={{
+          tabBarIcon: () => (
+            <Image
+              source={require('../assets/orders.png')}
+              style={{ height: 25, width: 25 }}
+            />
+          )
+        }}
+      />
+      <Tab.Screen name="Left" component={Screen4}
+        options={{
+
+          tabBarIcon: () => (
+            <Image
+              source={require('../assets/portfolio.jpeg')}
+              style={{ height: 25, width: 25 }}
+            />
+          )
+        }}
+      />
+
+    </Tab.Navigator>
+
   );
 };
 
@@ -151,7 +136,7 @@ export const styles = StyleSheet.create({
       width: 0,
       height: 0.5,
     },
-    transform: [{rotate: '-45deg'}],
+    transform: [{ rotate: '-45deg' }],
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 1,
@@ -166,6 +151,23 @@ export const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  customtab: {
+    height: 48,
+    width: 48,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    top: -69, transform: [{ rotate: '45deg' }],
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.17,
+    shadowRadius: 2.54,
+    elevation: 4
+  }
 });
 
 export default BottomTab;
