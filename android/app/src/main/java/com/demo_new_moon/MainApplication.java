@@ -11,6 +11,7 @@ import com.facebook.soloader.SoLoader;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.proyecto26.inappbrowser.RNInAppBrowserPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.github.wumke.RNExitApp.RNExitAppPackage;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {

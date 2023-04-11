@@ -72,7 +72,7 @@ const BottomTab = () => {
 
         }}
       />
-      <Tab.Screen name="Right" component={Screen1}
+      <Tab.Screen name="Screen2" component={Screen2}
         options={{
           tabBarIcon: () => (
             <Image
@@ -82,12 +82,12 @@ const BottomTab = () => {
           )
         }}
       />
-      <Tab.Screen name="Settings" component={Screen2}
+      <Tab.Screen name="Screen3" component={Screen3}
         options={{
           tabBarButton: (props) => <CustomButton {...props} />,
         }}
       />
-      <Tab.Screen name="Settingsone" component={Screen3}
+      <Tab.Screen name="Screen4" component={Screen4}
         options={{
           tabBarIcon: () => (
             <Image
@@ -97,7 +97,7 @@ const BottomTab = () => {
           )
         }}
       />
-      <Tab.Screen name="Left" component={Screen4}
+      <Tab.Screen name="Screen1" component={Screen1}
         options={{
 
           tabBarIcon: () => (

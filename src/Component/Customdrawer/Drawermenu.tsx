@@ -48,6 +48,10 @@ export const DrawerMenu = React.memo(() => {
     const navtoWebview = () => {
         navigation.navigate('Webview')
     }
+
+    const navtoSql = () => {
+        navigation.navigate('MainScreen')
+    }
     const width = Dimensions.get('window').width;
 
     type ItemProps = { displayName: string, name: string };
@@ -62,7 +66,7 @@ export const DrawerMenu = React.memo(() => {
                         height={width / 2.5}
                         autoPlay={true}
                         data={BannerData}
-                       
+
                         scrollAnimationDuration={1000}
                         pagingEnabled={true}
                         // onProgressChange={(_, absoluteProgress) =>
@@ -73,7 +77,7 @@ export const DrawerMenu = React.memo(() => {
                         //     parallaxScrollingScale: 0.9,
                         //     parallaxScrollingOffset: 50,
                         //   }}
-                        
+
                         // onSnapToItem={(index) => console.log('current index:', index)}
                         renderItem={({ item }) => (
                             <View
@@ -228,29 +232,31 @@ export const DrawerMenu = React.memo(() => {
                                 :
                                 displayName == 'e-Kyc System' ?
                                     <>
-                                        <View style={Drawerstyling.Innercokyc}>
-                                            <View style={Drawerstyling.Innertwoone}>
-                                                <Text style={[Drawerstyling.texticon, {
-                                                    fontSize: newfont
-                                                }]}>{t(name)}</Text>
-                                                <Entypo name="chevron-small-right" size={30} color='#000080' />
-                                            </View>
-                                            <View style={Drawerstyling.Buttomtxtcon}>
-                                                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                                                    <Text style={Drawerstyling.versiontxt}>
-                                                        Version 1.0.2.0
-                                                    </Text>
-                                                    <Text style={Drawerstyling.versiontxt}>
-                                                        Last Login : 2023-Mar-10 10:45:53
-                                                    </Text>
-
+                                        <TouchableOpacity onPress={navtoSql}>
+                                            <View style={Drawerstyling.Innercokyc}>
+                                                <View style={Drawerstyling.Innertwoone}>
+                                                    <Text style={[Drawerstyling.texticon, {
+                                                        fontSize: newfont
+                                                    }]}>{t(name)}</Text>
+                                                    <Entypo name="chevron-small-right" size={30} color='#000080' />
                                                 </View>
-                                                <Text style={Drawerstyling.buttontxt}>
-                                                    Powered by 63 moons technologies limited
-                                                </Text>
-                                            </View>
+                                                <View style={Drawerstyling.Buttomtxtcon}>
+                                                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                                                        <Text style={Drawerstyling.versiontxt}>
+                                                            Version 1.0.2.0
+                                                        </Text>
+                                                        <Text style={Drawerstyling.versiontxt}>
+                                                            Last Login : 2023-Mar-10 10:45:53
+                                                        </Text>
 
-                                        </View>
+                                                    </View>
+                                                    <Text style={Drawerstyling.buttontxt}>
+                                                        Powered by 63 moons technologies limited
+                                                    </Text>
+                                                </View>
+
+                                            </View>
+                                        </TouchableOpacity>
                                     </>
                                     :
                                     displayName === 'Account Statement'
