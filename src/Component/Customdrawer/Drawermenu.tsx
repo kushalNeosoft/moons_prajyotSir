@@ -232,31 +232,31 @@ export const DrawerMenu = React.memo(() => {
                                 :
                                 displayName == 'e-Kyc System' ?
                                     <>
-                                        <TouchableOpacity onPress={navtoSql}>
-                                            <View style={Drawerstyling.Innercokyc}>
+                                        <View style={Drawerstyling.Innercokyc}>
+                                            <TouchableOpacity onPress={navtoSql}>
                                                 <View style={Drawerstyling.Innertwoone}>
                                                     <Text style={[Drawerstyling.texticon, {
                                                         fontSize: newfont
                                                     }]}>{t(name)}</Text>
                                                     <Entypo name="chevron-small-right" size={30} color='#000080' />
                                                 </View>
-                                                <View style={Drawerstyling.Buttomtxtcon}>
-                                                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                                                        <Text style={Drawerstyling.versiontxt}>
-                                                            Version 1.0.2.0
-                                                        </Text>
-                                                        <Text style={Drawerstyling.versiontxt}>
-                                                            Last Login : 2023-Mar-10 10:45:53
-                                                        </Text>
-
-                                                    </View>
-                                                    <Text style={Drawerstyling.buttontxt}>
-                                                        Powered by 63 moons technologies limited
+                                            </TouchableOpacity>
+                                            <View style={Drawerstyling.Buttomtxtcon}>
+                                                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                                                    <Text style={Drawerstyling.versiontxt}>
+                                                        Version 1.0.2.0
                                                     </Text>
-                                                </View>
+                                                    <Text style={Drawerstyling.versiontxt}>
+                                                        Last Login : 2023-Mar-10 10:45:53
+                                                    </Text>
 
+                                                </View>
+                                                <Text style={Drawerstyling.buttontxt}>
+                                                    Powered by 63 moons technologies limited
+                                                </Text>
                                             </View>
-                                        </TouchableOpacity>
+
+                                        </View>
                                     </>
                                     :
                                     displayName === 'Account Statement'

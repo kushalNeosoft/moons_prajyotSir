@@ -10,6 +10,8 @@ import {checkInternet, setAppState} from '../Redux/Action';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState } from 'react-native/Libraries/AppState/AppState';
+import Toast from 'react-native-toast-message';
+import { toastConfig } from '../services/toastMessageService';
 
 
 export const AppNavigation = () => {
@@ -54,6 +56,7 @@ export const AppNavigation = () => {
   return (
     <NavigationContainer>
       <SideDrawerNavigation/>
+      <Toast config={toastConfig}/>
     </NavigationContainer>
   );
 };

@@ -20,11 +20,11 @@ import Screen2 from '../Screens/Extra/Screen2';
 import Screen3 from '../Screens/Extra/Screen3';
 import Screen4 from '../Screens/Extra/Screen4';
 
-// LogBox.ignoreAllLogs()
+
 const Tab = createBottomTabNavigator();
 const BottomTab = () => {
-  
-  const CustomButton = () => (
+
+  const CustomButton = ({ onPress }) => (
     <View
       style={{
         alignItems: "center",
@@ -35,14 +35,14 @@ const BottomTab = () => {
         width={94}
         height={38}
         viewBox="0 0 94 40"
-        
+
       >
         <Path
           d="M.333 0c7.364 0 13.334 5.969 13.334 13.333v3.334C13.667 29.553 34.113 40 47 40c13 .5 33.333-10.447 33.333-23.333v-3.334C80.333 5.97 86.303 0 93.667 0H.333z"
           fill="#F5F5F5"
         />
       </Svg>
-      <TouchableOpacity >
+      <TouchableOpacity onPress={onPress}>
         <View style={styles.customtab}>
           <Fontisto name="search" size={25} style={{ transform: [{ rotate: '-45deg' }] }} />
         </View>
@@ -50,7 +50,7 @@ const BottomTab = () => {
 
     </View>
   );
-  
+
   return (
     <Tab.Navigator screenOptions={{
       headerShown: false,
@@ -72,7 +72,7 @@ const BottomTab = () => {
 
         }}
       />
-      <Tab.Screen name="Screen2" component={Screen2}
+      <Tab.Screen name="Screen1" component={Screen1}
         options={{
           tabBarIcon: () => (
             <Image
@@ -82,12 +82,11 @@ const BottomTab = () => {
           )
         }}
       />
-      <Tab.Screen name="Screen3" component={Screen3}
+      <Tab.Screen name="Screen2" component={Screen2}
         options={{
           tabBarButton: (props) => <CustomButton {...props} />,
-        }}
-      />
-      <Tab.Screen name="Screen4" component={Screen4}
+        }} />
+      <Tab.Screen name="Screen3" component={Screen3}
         options={{
           tabBarIcon: () => (
             <Image
@@ -97,7 +96,7 @@ const BottomTab = () => {
           )
         }}
       />
-      <Tab.Screen name="Screen1" component={Screen1}
+      <Tab.Screen name="Screen4" component={Screen4}
         options={{
 
           tabBarIcon: () => (

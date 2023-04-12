@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, {Suspense, lazy, useEffect, useState} from 'react';
 import {ActivityIndicator, Image, Text, View} from 'react-native';
+import '../../axios/interceptors';
 // const DogImage = React.lazy(() => import('./components/DogImage'));
 
 const DogImage = lazy(() => import('./components/DogImage'));
@@ -8,19 +10,23 @@ const DataLazyLoading = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<any>();
   useEffect(() => {
-    console.log('Something');
     fetchRandomDogs();
   }, []);
 
   const fetchRandomDogs = async () => {
     setLoading(true);
-    fetch('https://dog.ceo/api/breeds/image/random')
-      .then((response: any) => response.json())
-      .then(d => {
-        setData(d);
-        setLoading(false);
-        // console.log(d);
-      });
+    axios.get('https://dog.ceo/api/breeds/image/random').then(response => {
+      console.log(response.data);
+      setData(response.data);
+      setLoading(false);
+    });
+    // fetch('https://dog.ceo/api/breeds/image/random')
+    //   .then((response: any) => response.json())
+    //   .then(d => {
+    //     setData(d);
+    //     setLoading(false);
+    //     // console.log(d);
+    //   });
   };
   return (
     <View style={{flex: 1}}>
