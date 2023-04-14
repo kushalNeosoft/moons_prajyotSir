@@ -10,6 +10,7 @@ import StockDetails from "../Screens/StockDetails/StockDetails";
 import PhoneEmail from "../Screens/PhoneEmail/PhoneEmail";
 import DataLazyLoading from "../Screens/lazy/DataLazyLoading";
 import MainScreen from "../SqlDatabase/MainScreen";
+import CustomBottom from "./Custombottomtab";
 
 import BottomTab from "./BottomTab";
 import {
@@ -54,6 +55,8 @@ export const DashboardNavigation = () => {
         <DashboardNavigator.Screen name="Login" component={Login} options={{gestureEnabled:false}} />
       }
       <DashboardNavigator.Screen name="Stock" component={BottomTab} />
+      
+
       <DashboardNavigator.Screen name="Profile" component={Profile} />
       <DashboardNavigator.Screen name="BuySell" component={BuySell} />
       <DashboardNavigator.Screen name="Settings" component={Settings} />

@@ -19,6 +19,24 @@ import Screen1 from '../Screens/Extra/Screen1';
 import Screen2 from '../Screens/Extra/Screen2';
 import Screen3 from '../Screens/Extra/Screen3';
 import Screen4 from '../Screens/Extra/Screen4';
+import TabBar from '../Component/Tabbar/Tabbar';
+
+interface Tab {
+  id: string;
+  label: string;
+  icon: string;
+  screen: React.FC;
+}
+
+const TABS: Tab[] = [
+  { id: 'tab1', label: 'Tab 1', icon: 'ios-home', screen: StockDetails },
+  { id: 'tab2', label: 'Tab 2', icon: 'ios-list', screen: Screen1 },
+  { id: 'tab3', label: 'Tab 3', icon: 'ios-settings', screen: Screen2 },
+  { id: 'tab4', label: 'Tab 4', icon: 'ios-settings', screen: Screen3 },
+  { id: 'tab5', label: 'Tab 5', icon: 'ios-settings', screen: Screen4 },
+
+];
+
 
 
 const Tab = createBottomTabNavigator();
@@ -53,13 +71,18 @@ const BottomTab = () => {
 
   return (
     <Tab.Navigator screenOptions={{
+
       headerShown: false,
       tabBarShowLabel: false,
       tabBarStyle: { position: 'absolute' },
+      lazy: true,
+      unmountOnBlur: false
+
     }}
+      tabBar={props => <TabBar {...props} />}
 
     >
-      <Tab.Screen name="StockDetails"
+      {/* <Tab.Screen name="StockDetails"
         component={StockDetails}
 
         options={{
@@ -106,7 +129,19 @@ const BottomTab = () => {
             />
           )
         }}
-      />
+      /> */}
+
+
+      {TABS.map((tab) => (
+        <Tab.Screen
+          key={tab.id}
+          name={tab.id}
+          component={tab.screen}
+          options={{
+            title: tab.label,
+          }}
+        />
+      ))}
 
     </Tab.Navigator>
 

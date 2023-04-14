@@ -1,97 +1,39 @@
-import React, {
-    useState,
-    useRef,
-    useCallback,
-    useEffect,
-  } from 'react';
+
   import {
     Text,
     View,
     StyleSheet,
-    TouchableOpacity,
-    ActivityIndicator,
   } from 'react-native';
-  import DraggableFlatList from 'react-native-draggable-flatlist';
-  import {Button} from 'react-native';
-import { useDispatch } from 'react-redux';
-import { reorderList } from '../../Redux/Action';
-import { useNavigation } from '@react-navigation/native';
-  
-  function Screen1(props: any) {
-    const [data, setData] = useState<any>();
-    const [loading,setLoading]=useState(true)
-    const itemRefs = useRef(new Map());
+import React, { lazy, Suspense } from 'react';
 
-    const dispatch=useDispatch()
-    const navigation=useNavigation<any>()
+const Drag = React.lazy(() => import('./comp/Drag'));
+  
+  const Screen1 =(props: any)=>  {
+    return (
+      <View style={{flex: 1}}>
 
-    const dispatchAndNavigate=()=>{
-        dispatch(reorderList(data))
-        navigation.navigate('Screen2')
-    }
-  
-    useEffect(()=>{
-      const pushStockData = () => {
-        let StockArraydata = [];
-        for (let i = 0; i < 20; i++) {
-          StockArraydata.push({
-            companyName: Math.floor(Math.random() * 99),
-            index: 'NSE',
-            value: Math.floor(Math.random() * 999),
-            dayValue: '35.15',
-            percentage: '1.65',
-            id: i,
-          });
-        }
-        setData(StockArraydata);
-        setLoading(false)
-      };
-      pushStockData()
-    },[])
-  
-  
-    const renderItem = useCallback((params: any) => {
-  
-      return (
-        <RowItem {...params} itemRefs={itemRefs} />
-      );
-    }, []);
+          <Suspense fallback={<Text>Loading</Text>}>
+              <Drag />
+          </Suspense>
+          {/* <ActivityIndicator size="large" color="#00ff00" />  */}
+      </View>
+
+
+  )
+  }
+
+  export default React.memo(Screen1);
+  const Rowitem = React.lazy(()=> import ('./comp/Rowitem'))
+  function NewRow() {
   
     return (
       <View style={{flex: 1}}>
-        {loading ? (
-          <ActivityIndicator size={'large'} color={'red'} />
-        ) : (
-          <View style={styles.container}>
-            <Button title="Press" onPress={() =>dispatchAndNavigate()} />
-            <DraggableFlatList
-              keyExtractor={(item: any) => item.id}
-              data={data}
-              renderItem={renderItem}
-              onDragEnd={({data}) => setData(data)}
-              activationDistance={20}
-            />
-          </View>
-        )}
-      </View>
-    );
-  }
-  
-  export default Screen1;
-  
-  function RowItem({item, drag}: any) {
-  
-    return (
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => console.log('Index', item.id)}
-            onLongPress={drag}
-            style={[
-              styles.row,
-              {backgroundColor: 'black', height: 100, marginVertical: 10},
-            ]}>
-            <Text style={styles.text}>{`${item.id}--${item.companyName}`}</Text>
-          </TouchableOpacity>
+
+      <Suspense fallback={<Text>Loading</Text>}>
+          <Rowitem />
+      </Suspense>
+      {/* <ActivityIndicator size="large" color="#00ff00" />  */}
+  </View>
     );
   }
   

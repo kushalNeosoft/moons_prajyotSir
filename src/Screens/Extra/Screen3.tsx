@@ -17,4 +17,5 @@ const Screen3 = () => {
 
     )
 }
-export default Screen3;
+
+export default React.memo(Screen3);

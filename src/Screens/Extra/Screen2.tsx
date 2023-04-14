@@ -37,4 +37,5 @@ function Screen2() {
   );
 }
 
-export default Screen2;
+
+export default React.memo(Screen2);
