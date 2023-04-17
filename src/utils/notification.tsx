@@ -9,50 +9,52 @@ export async function requestUserPermission() {
 
   if (enabled) {
     console.log('Authorization status:', authStatus);
-    getFCMToken()
+    getFCMToken();
   }
 }
 
-const getFCMToken = async ()=>{
-    
-    let fcmtoken= await AsyncStorage.getItem("fcmtoken");
-    console.log(fcmtoken,"old token");
-    
-    if(!fcmtoken){
+const getFCMToken = async () => {
+  let fcmtoken = await AsyncStorage.getItem('fcmtoken');
+  console.log(fcmtoken, 'old token');
 
-        try{
-                const fcmtoken=await messaging().getToken();
-                if(fcmtoken){
-                    console.log(fcmtoken,"new token");
-                    await AsyncStorage.setItem("fcmtoken",fcmtoken);
-                }
-        } catch(error){
-            console.log(error,"error in fcm token");
-        }
-    
+  if (!fcmtoken) {
+    try {
+      const fcmtoken = await messaging().getToken();
+      if (fcmtoken) {
+        console.log(fcmtoken, 'new token');
+        await AsyncStorage.setItem('fcmtoken', fcmtoken);
+      }
+    } catch (error) {
+      console.log(error, 'error in fcm token');
     }
+  }
+};
 
+export const notificationListener = () => {
+  messaging().onNotificationOpenedApp(remoteMessage => {
+    console.log(
+      'Notification caused app to open from background state:',
+      remoteMessage.notification,
+    );
+  });
 
-}
-
-export const notificationListener =()=>{
-    messaging().onNotificationOpenedApp(remoteMessage => {
+  messaging()
+    .getInitialNotification()
+    .then(remoteMessage => {
+      if (remoteMessage) {
         console.log(
-          'Notification caused app to open from background state:',remoteMessage.notification);
-      });
+          'Notification caused app to open from quit state:',
+          remoteMessage.notification,
+        );
+      }
+    });
 
-      messaging()
-      .getInitialNotification()
-      .then(remoteMessage => {
-        if (remoteMessage) {
-          console.log(
-            'Notification caused app to open from quit state:',
-            remoteMessage.notification,
-          );
-        }
-      });
+  messaging().onMessage(async remoteMessage => {
+    console.log('recived Foreground message', remoteMessage);
+  });
+};
 
-      messaging().onMessage(async remoteMessage =>{
-        console.log("recived Foreground message",remoteMessage);
-      })
-}
+messaging()
+  .subscribeToTopic('news')
+  .then(() => console.log('Subscribed to news topic!'))
+  .catch(error => console.log('Error subscribing to news topic:', error));

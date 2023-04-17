@@ -13,6 +13,7 @@ import {
   DEC_FONT,
   REORDER_LIST,
   IMAGE_CAPTURE,
+  ADD_KEY_VALUE,
 } from './actionTypes';
 
 
@@ -82,4 +83,9 @@ export const reorderList=(data:any)=>({
   type:REORDER_LIST,
   data
 })
+
+export const addKeyValue = (key: any, value: any) => ({
+  type: ADD_KEY_VALUE,
+  payload: {key, value},
+});
 
