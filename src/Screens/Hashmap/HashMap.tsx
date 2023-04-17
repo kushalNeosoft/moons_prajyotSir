@@ -9,12 +9,15 @@ import {
   FlatList,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {addKeyValue} from '../redux/Action';
+import { addKeyValue } from '../../Redux/Action';
+
 
 const HashMap = () => {
   const [key, setKey] = useState<string>('');
   const [value, setValue] = useState<string>('');
-  let dictionary: any = useSelector(state => state?.dictionary);
+  let Data: any = useSelector(state => state?.HashMapReducer?.hashMap);
+  console.log('hashmap', Data);
+
   const dispatch = useDispatch();
 
   const addPair = () => {
@@ -22,9 +25,7 @@ const HashMap = () => {
       dispatch(addKeyValue(key, value));
       setKey('');
       setValue('');
-      console.log(dictionary);
     } else {
-      console.log(dictionary);
     }
   };
   const renderKeyValuePair = ({item}) => {
@@ -36,10 +37,7 @@ const HashMap = () => {
       </View>
     );
   };
-  const data = Object.keys(dictionary).map(key => ({
-    key,
-    value: dictionary[key],
-  }));
+  const data = Array.from(Data, ([key, value]) => ({key, value}));
 
   return (
     <View>
