@@ -15,7 +15,7 @@ import { addKeyValue } from '../../Redux/Action';
 const HashMap = () => {
   const [key, setKey] = useState<string>('');
   const [value, setValue] = useState<string>('');
-  let Data: any = useSelector(state => state?.HashMapReducer?.hashMap);
+  let Data: any = useSelector(state => state?.Hash?.hashMap);
   console.log('hashmap', Data);
 
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const HashMap = () => {
       </View>
     );
   };
-  const data = Array.from(Data, ([key, value]) => ({key, value}));
+    const data = Array.from(Data ?? [], ([key, value]) => ({key, value}));
 
   return (
     <View>

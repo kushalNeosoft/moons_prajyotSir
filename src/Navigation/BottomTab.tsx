@@ -18,7 +18,8 @@ import Fontisto from 'react-native-vector-icons/Fontisto'
 import Screen1 from '../Screens/Extra/Screen1';
 import Screen2 from '../Screens/Extra/Screen2';
 import Screen3 from '../Screens/Extra/Screen3';
-import Screen4 from '../Screens/Extra/Screen4';
+ import Screen4 from '../Screens/Extra/Screen4';
+import HashMap from '../Screens/Hashmap/HashMap';
 import TabBar from '../Component/Tabbar/Tabbar';
 
 interface Tab {
@@ -33,7 +34,9 @@ const TABS: Tab[] = [
   { id: 'tab2', label: 'Tab 2', icon: 'ios-list', screen: Screen1 },
   { id: 'tab3', label: 'Tab 3', icon: 'ios-settings', screen: Screen2 },
   { id: 'tab4', label: 'Tab 4', icon: 'ios-settings', screen: Screen3 },
-  { id: 'tab5', label: 'Tab 5', icon: 'ios-settings', screen: Screen4 },
+  // { id: 'tab5', label: 'Tab 5', icon: 'ios-settings', screen: Screen4 },
+
+   { id: 'tab5', label: 'Tab 5', icon: 'ios-settings', screen: HashMap },
 
 ];
 
@@ -71,7 +74,6 @@ const BottomTab = () => {
 
   return (
     <Tab.Navigator screenOptions={{
-
       headerShown: false,
       tabBarShowLabel: false,
       tabBarStyle: { position: 'absolute' },
@@ -80,7 +82,6 @@ const BottomTab = () => {
 
     }}
       tabBar={props => <TabBar {...props} />}
-
     >
       {/* <Tab.Screen name="StockDetails"
         component={StockDetails}

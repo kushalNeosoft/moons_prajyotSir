@@ -11,6 +11,7 @@ import PhoneEmail from "../Screens/PhoneEmail/PhoneEmail";
 import DataLazyLoading from "../Screens/lazy/DataLazyLoading";
 import MainScreen from "../SqlDatabase/MainScreen";
 import CustomBottom from "./Custombottomtab";
+import HashMap from "../Screens/Hashmap/HashMap";
 
 import BottomTab from "./BottomTab";
 import {
@@ -68,6 +69,8 @@ export const DashboardNavigation = () => {
       <DashboardNavigator.Screen name="DataLazyLoading" component={DataLazyLoading} />
       <DashboardNavigator.Screen name="Webview" component={Webview} />
       <DashboardNavigator.Screen name="MainScreen" component={MainScreen} />
+      {/* <DashboardNavigator.Screen name="Hashmap" component={HashMap} /> */}
+
 
 
 

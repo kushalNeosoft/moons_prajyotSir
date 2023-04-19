@@ -3,16 +3,14 @@ import {
   ADD_FONT,
   DEC_FONT,
   IMAGE_CAPTURE,
-  ADD_KEY_VALUE,
+  
 } from '../actionTypes';
 
 const initialState = {
   firsttime: false,
   counter: 15,
   imgstore: '',
-  dictionary: {
-    key0: 0,
-  },
+  
 };
 
 const Loginreducer = (
@@ -47,18 +45,7 @@ const Loginreducer = (
         ...state,
         imgstore: action.data.imgstore,
       };
-    case ADD_KEY_VALUE:
-      return {
-        ...state,
-        dictionary: {
-          ...state.dictionary,
-          [action.payload.key]: action.payload.value,
-        },
-        // use below code when you use intial state as a dictionary
-        // ...state,
-        // [action.payload.key]: action.payload.value,
-      };
-
+    
     default:
       return state;
   }

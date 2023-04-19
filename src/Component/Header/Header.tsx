@@ -13,15 +13,17 @@ import {texts} from '../../constants/text';
 import alignment from '../../utils/alignment';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
 import IndexModal from '../Modal';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {MenuIcon, RupeeIcon,} from '../Svg/Svg';
 
-function Header(props:any) {
+function Header(props: any) {
   const [modalVisible, setModalVisible] = useState(false);
   const [niftyValue, setNiftyValue] = useState(true);
   const [sensexValue, setSenSexValue] = useState(true);
   const [otherValue, setOtherValue] = useState(false);
 
-  const navigation=useNavigation<any>();
+  const navigation = useNavigation<any>();
 
   useEffect(() => {
     if (niftyValue && sensexValue && otherValue) {
@@ -71,7 +73,9 @@ function Header(props:any) {
 
   const renderIndexView = ({item}: any) => {
     return (
-      <TouchableOpacity style={{ alignItems: 'center'}} onPress={()=>navigation.navigate('Constituents')}>
+      <TouchableOpacity
+        style={{alignItems: 'center',borderRightWidth:1,borderRightColor:"#E0E0E0"}}
+        onPress={() => navigation.navigate('Constituents')}>
         <Text style={styles.titleText}>{item.name}</Text>
         <Text style={styles.titleText}>{item.value}</Text>
         <Text
@@ -92,29 +96,25 @@ function Header(props:any) {
         otherValue={otherValue}
       />
       <View style={styles.container}>
-        <TouchableOpacity style={{borderWidth:1,backgroundColor:"yellow"}} onPress={()=>navigation.toggleDrawer()}>
-          <Text>Open</Text>
-        </TouchableOpacity>
-        <FlatList
-          horizontal={true}
-          data={data}
-          renderItem={renderIndexView}
-          showsHorizontalScrollIndicator={false}
-        />
-        <View style={{...alignment.space_between}}>
+        <View style={styles.headerLeft}>
+          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+            <MenuIcon />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.headerMiddle}>
+          <FlatList
+            horizontal={true}
+            data={data}
+            renderItem={renderIndexView}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+        <View style={styles.headerRight}>
           <TouchableOpacity>
-            <Image
-              source={assets.rupees}
-              style={styles.image}
-              resizeMode="contain"
-            />
+            <RupeeIcon />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setModalVisible(prev => !prev)}>
-            <Image
-              source={assets.settings}
-              style={styles.image}
-              resizeMode="contain"
-            />
+            <Ionicons name="md-settings-sharp" size={20} color={'black'}/>
           </TouchableOpacity>
         </View>
       </View>
@@ -131,7 +131,7 @@ function Header(props:any) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: '8%',
+    flex: 0.55,
   },
   image: {
     height: 20,
@@ -140,10 +140,28 @@ const styles = StyleSheet.create({
   titleText: {
     fontWeight: 'bold',
     color: colors.black,
-    paddingHorizontal: 50,
+    paddingHorizontal: 40,
   },
   changePercentage: {
     color: colors.bright_green,
+  },
+  headerLeft: {
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems:"center",
+  },
+  headerMiddle: {
+    flex: 4,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    padding:5
+  },
+  headerRight: {
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent:'space-around',
+    alignItems:"center"
   },
 });
 

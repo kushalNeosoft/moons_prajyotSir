@@ -10,7 +10,7 @@ import {SettingsScreenStyle} from './Settings.style';
 
 export const Settings: React.FC = () => {
   const {t} = useTranslation();
-  const navigation=useNavigation();
+ 
   const dispatch=useDispatch();
 
   const [langModalVisible, setLangModalVisible] = useState(false);
