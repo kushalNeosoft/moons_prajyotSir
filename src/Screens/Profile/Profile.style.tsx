@@ -5,8 +5,7 @@ export const Profilestyle = StyleSheet.create({
   
     maincon:{
         flex:1,
-        alignItems:"center",
-        justifyContent:"center",
+        
     },
     imagcon:{
         height:70,

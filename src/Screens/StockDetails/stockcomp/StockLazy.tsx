@@ -37,6 +37,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import BottomSheet, {
   BottomSheetRefProps,
 } from '../../../Component/BottomSheet/BottomSheet';
@@ -177,7 +178,7 @@ const StockLazy = () => {
             </View>
           </View>
           <View>
-            <Fontisto name="pie-chart-2" size={15} color={'black'}/>
+            <Fontisto name="pie-chart-2" size={15} color={'black'} />
           </View>
         </View>
         <View style={{flex: 2.9}}>
@@ -274,19 +275,41 @@ const StockLazy = () => {
         transparent={true}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Are you Sure You Want To Exit</Text>
+            <View style={{flex: 1.5, height: '100%', alignItems: 'center'}}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  color: 'black',
+                  marginTop: '15%',
+                  fontWeight: 'bold',
+                  marginBottom: '20%',
+                }}>
+                Wave 2
+              </Text>
+              <AntDesign name="exclamationcircle" size={40} color="grey" />
+            </View>
             <View
-              style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={cinfirmCLode}>
-                <Text style={styles.textStyle}>Confirm close</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}>
-                <Text style={styles.textStyle}>Cancle</Text>
-              </Pressable>
+              style={{
+                justifyContent: 'flex-end',
+                flex: 3,
+                height: '100%',
+                paddingBottom: '5%',
+              }}>
+              <Text style={styles.modalText}>Do you want to exit the app?</Text>
+
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={cinfirmCLode}>
+                  <Text style={styles.textStyle}>Confirm</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.buttontwo, styles.buttonClose]}
+                  onPress={() => setModalVisible(!modalVisible)}>
+                  <Text style={styles.textStyletwo}>Cancle</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </View>
@@ -377,17 +400,20 @@ export const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 1,
+   
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
   },
   modalView: {
-    margin: 20,
-
+    flexDirection: 'row',
+    margin: 30,
+    height: Dimensions.get('window').height * 0.2,
     backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
+    borderRadius: 8,
+    padding: 5,
+
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -401,22 +427,39 @@ export const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 20,
-    padding: 10,
-    elevation: 2,
+    height: 30,
+    width: '40%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000080',
   },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
+  buttontwo: {
+    borderRadius: 20,
+    height: 30,
+    width: '40%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#000080',
+    backgroundColor: 'white',
   },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
+  buttonOpen: {},
+  buttonClose: {},
   textStyle: {
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  textStyletwo: {
+    color: '#000080',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   modalText: {
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: 'left',
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'black',
   },
 });
