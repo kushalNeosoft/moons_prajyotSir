@@ -1,0 +1,174 @@
+
+// My Favourite Page
+
+//MyFav.flatListMain
+
+export const MyFav = StyleSheet.create({
+
+  header: {
+    fontSize: 28,
+    color: root.color_text,
+    fontFamily: Cfont.rubik_medium,
+    padding: 16,
+    marginTop: 18
+  },
+
+  total: {
+    fontSize: 16,
+    fontFamily: Cfont.rubik_regular,
+    color: root.color_text,
+    paddingHorizontal: 16
+  },
+
+  flatListMain: { marginHorizontal: 12, marginTop: 16, height: 43 },
+
+});
+
+
+
+//Dialog Box
+
+//ExDialog.choose
+export const ExDialog = StyleSheet.create({
+
+  main: {
+    position: 'absolute',
+    // top: 320,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'white',
+    paddingVertical: 24,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  view: { width: '100%', height: '100%' },
+
+  header: {
+    paddingHorizontal: 20,
+    position: 'relative',
+  },
+
+  choose: {
+    fontSize: Font.font_title,
+    fontFamily: Cfont.rubik_medium,
+    color: root.color_text,
+    width: '75%',
+  },
+
+
+
+  exc: {
+    fontSize: Font.font_title,
+    fontFamily: Cfont.rubik_medium,
+    color: root.color_text,
+    width: '75%',
+  },
+  closeMain: { position: 'absolute', right: 16 },
+
+  closeIcon: { height: 24, width: 24, color: root.color_text },
+
+
+  mainTxt: {
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+
+  },
+  mainTxt2: {
+    width: 20,
+    height: 20,
+    borderWidth: 1.8,
+    borderColor: root.color_text,
+    borderRadius: 12,
+    padding: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+ 
+
+  border: {
+    height: 10,
+    width: 10,
+    backgroundColor: root.color_text,
+    borderRadius: 8,
+  },
+
+  txt: { marginLeft: 16, color: root.color_text, fontFamily: Cfont.rubik_medium }
+});
+
+//SegmentDialog
+
+export const SegDialog = StyleSheet.create({
+
+  close: {
+    flex: 1,
+    backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    position: 'relative',
+  },
+  main: {
+    position: 'absolute',
+    // top: 320,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'white',
+    paddingVertical: 24,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  main1: { width: '100%', height: '100%' },
+
+  textView: {
+    paddingHorizontal: 20,
+    position: 'relative'
+  },
+
+  choose: {
+    fontSize: Font.font_title,
+    fontFamily: Cfont.rubik_medium,
+    color: root.color_text,
+    width: '75%',
+  },
+
+
+
+
+  seg: {
+    fontSize: Font.font_title,
+    fontFamily: Cfont.rubik_medium,
+    color: root.color_text,
+    width: '75%',
+  },
+  closeView: { position: 'absolute', right: 16 },
+
+  closeIcon: { height: 24, width: 24, color: root.color_text },
+
+
+});
+
+//Sector Dialog
+
+export const sectorDialog = StyleSheet.create({
+
+  searchMain: {
+    marginTop: 16,
+    marginHorizontal: 16,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: root.color_text,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  searchIcon: { width: 16, height: 16, fill: root.color_text },
+  textInput: {
+    marginLeft: 8,
+    flex: 1,
+    paddingVertical: 0,
+    fontSize: 14,
+    color: root.color_text
+  }
+});
